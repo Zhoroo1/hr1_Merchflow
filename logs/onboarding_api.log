@@ -1,0 +1,7 @@
+[2025-10-05 18:09:01] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:09:26] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:09:26] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:09:27] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:09:53] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:10:11] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101
+[2025-10-05 18:10:19] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'full_name' in 'field list' @ C:\xampp\htdocs\hr1_Merchflow\api\onboarding_api.php:101

@@ -1,0 +1,95 @@
+[2025-10-06 23:16:36] DB OK, using database: hr1_merch
+[2025-10-06 23:16:36] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:16:40] DB OK, using database: hr1_merch
+[2025-10-06 23:16:40] ACT=add_req PAYLOAD={"action":"add_req","role":"sdwadsa","needed":1,"stage":"New"}
+[2025-10-06 23:16:40] ERROR: Save failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'needed' in 'field list'
+[2025-10-06 23:16:47] DB OK, using database: hr1_merch
+[2025-10-06 23:16:47] ACT=add_req PAYLOAD={"action":"add_req","role":"dsawda","needed":1,"stage":"New"}
+[2025-10-06 23:16:47] ERROR: Save failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'needed' in 'field list'
+[2025-10-06 23:21:20] DB OK, using database: hr1_merch
+[2025-10-06 23:21:20] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:21:31] DB OK, using database: hr1_merch
+[2025-10-06 23:21:31] ACT=add_req PAYLOAD={"action":"add_req","role":"sdawdsawd","needed":1,"stage":"New"}
+[2025-10-06 23:21:31] ERROR: Save failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hr1_merch`.`recruitments`, CONSTRAINT `recruitments_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `applicants` (`id`))
+[2025-10-06 23:22:13] DB OK, using database: hr1_merch
+[2025-10-06 23:22:13] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:22:26] DB OK, using database: hr1_merch
+[2025-10-06 23:22:26] ACT=add_req PAYLOAD={"action":"add_req","role":"Cashier","needed":3,"stage":"New"}
+[2025-10-06 23:22:26] ERROR: Save failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hr1_merch`.`recruitments`, CONSTRAINT `recruitments_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `applicants` (`id`))
+[2025-10-06 23:27:55] DB OK, using database: hr1_merch
+[2025-10-06 23:27:55] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:27:56] DB OK, using database: hr1_merch
+[2025-10-06 23:27:56] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:28:11] DB OK, using database: hr1_merch
+[2025-10-06 23:28:11] ACT=add_req PAYLOAD={"action":"add_req","role":"Cashier","needed":1,"stage":"New"}
+[2025-10-06 23:28:11] ADD_REQ OK: REQ-2025-003
+[2025-10-06 23:28:11] DB OK, using database: hr1_merch
+[2025-10-06 23:28:11] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:31:07] DB OK, using database: hr1_merch
+[2025-10-06 23:31:07] ACT=schedule_req PAYLOAD={"action":"schedule_req","req_no":"REQ-2025-003","date":"","start":"05:30","end":"07:31","panel":"Anna"}
+[2025-10-06 23:33:32] DB OK, using database: hr1_merch
+[2025-10-06 23:33:32] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:34:01] DB OK, using database: hr1_merch
+[2025-10-06 23:34:01] ACT=add_req PAYLOAD={"action":"add_req","role":"gegegege","needed":1,"stage":"Interview"}
+[2025-10-06 23:34:01] ADD_REQ OK: REQ-2025-004
+[2025-10-06 23:34:01] DB OK, using database: hr1_merch
+[2025-10-06 23:34:01] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:34:28] DB OK, using database: hr1_merch
+[2025-10-06 23:34:28] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:34:38] DB OK, using database: hr1_merch
+[2025-10-06 23:34:38] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:34:45] DB OK, using database: hr1_merch
+[2025-10-06 23:34:45] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:37:28] DB OK, using database: hr1_merch
+[2025-10-06 23:37:28] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:37:31] DB OK, using database: hr1_merch
+[2025-10-06 23:37:31] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:37:32] DB OK, using database: hr1_merch
+[2025-10-06 23:37:32] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:37:33] DB OK, using database: hr1_merch
+[2025-10-06 23:37:33] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:38:10] DB OK, using database: hr1_merch
+[2025-10-06 23:38:10] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:38:11] DB OK, using database: hr1_merch
+[2025-10-06 23:38:11] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:41:10] DB OK, using database: hr1_merch
+[2025-10-06 23:41:10] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:43:29] DB OK, using database: hr1_merch
+[2025-10-06 23:43:29] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:43:42] DB OK, using database: hr1_merch
+[2025-10-06 23:43:42] ACT=add_req PAYLOAD={"action":"add_req","role":"dsfesfs","needed":1,"stage":"New"}
+[2025-10-06 23:43:42] ADD_REQ OK: REQ-2025-005
+[2025-10-06 23:43:42] DB OK, using database: hr1_merch
+[2025-10-06 23:43:42] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:47:30] DB OK, using database: hr1_merch
+[2025-10-06 23:47:30] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:50:48] DB OK, using database: hr1_merch
+[2025-10-06 23:50:48] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:50:49] DB OK, using database: hr1_merch
+[2025-10-06 23:50:49] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:50:50] DB OK, using database: hr1_merch
+[2025-10-06 23:50:50] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:51:02] DB OK, using database: hr1_merch
+[2025-10-06 23:51:02] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:51:19] DB OK, using database: hr1_merch
+[2025-10-06 23:51:19] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:51:25] DB OK, using database: hr1_merch
+[2025-10-06 23:51:25] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-06 23:51:33] DB OK, using database: hr1_merch
+[2025-10-06 23:51:33] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-07 00:00:27] DB OK, using database: hr1_merch
+[2025-10-07 00:00:27] ACT=list PAYLOAD={"action":"list","q":"","status":""}
+[2025-10-07 00:00:42] DB OK, using database: hr1_merch
+[2025-10-07 00:00:42] ACT=delete_req PAYLOAD={"action":"delete_req","req_no":"REQ-2025-002"}
+[2025-10-07 00:00:42] ERROR: Unknown action
+[2025-10-07 00:00:45] DB OK, using database: hr1_merch
+[2025-10-07 00:00:45] ACT=delete_req PAYLOAD={"action":"delete_req","req_no":"REQ-2025-002"}
+[2025-10-07 00:00:45] ERROR: Unknown action
+[2025-10-07 00:00:47] DB OK, using database: hr1_merch
+[2025-10-07 00:00:47] ACT=delete_req PAYLOAD={"action":"delete_req","req_no":"REQ-2025-002"}
+[2025-10-07 00:00:47] ERROR: Unknown action
+[2025-10-07 00:00:49] DB OK, using database: hr1_merch
+[2025-10-07 00:00:49] ACT=delete_req PAYLOAD={"action":"delete_req","req_no":"REQ-2025-001"}
+[2025-10-07 00:00:49] ERROR: Unknown action
+[2025-10-07 00:03:23] DB OK, using database: hr1_merch
+[2025-10-07 00:03:23] ACT=schedule_req PAYLOAD={"action":"schedule_req","req_no":"REQ-2025-004","date":"","start":"","end":"","panel":"dwadsdwa"}
