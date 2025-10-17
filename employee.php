@@ -233,6 +233,11 @@ function isActive($page){
   #sidebar{scrollbar-width:none;-ms-overflow-style:none} #sidebar::-webkit-scrollbar{display:none}
   .iconbtn{width:30px;height:30px;display:grid;place-items:center;border-radius:.5rem;border:1px solid #e5e7eb;color:#475569}
   .iconbtn:hover{background:#f8fafc}
+  .toast-enter { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  .toast-enter-active { opacity: 1; transform: translateY(0) scale(1); transition: all .18s ease-out; }
+  .toast-exit { opacity: 1; transform: translateY(0) scale(1); }
+  .toast-exit-active { opacity: 0; transform: translateY(-8px) scale(0.98); transition: all .15s ease-in; }
+
 </style>
 </head>
 <body class="bg-slate-50">
@@ -452,6 +457,63 @@ function isActive($page){
   btn?.addEventListener('click',()=>{ sb.classList.toggle('collapsed'); localStorage.setItem('sb-collapsed', sb.classList.contains('collapsed')?'1':'0'); applyShift(); });
   if(localStorage.getItem('sb-collapsed')==='1'){ sb.classList.add('collapsed'); }
   applyShift();
+  function toast(type='info', title='Notice', message='', ms=2800) {
+  const root = document.getElementById('toast-root');
+  if (!root) return;
+
+  const colors = {
+    success: 'bg-emerald-600 ring-1 ring-emerald-400/50',
+    error:   'bg-rose-600 ring-1 ring-rose-400/50',
+    warn:    'bg-amber-600 ring-1 ring-amber-400/50',
+    info:    'bg-slate-700 ring-1 ring-slate-400/30'
+  };
+  const icon = {
+    success: '✓', error:'⨉', warn:'⚠', info:'ℹ'
+  }[type] || 'ℹ';
+
+  const el = document.createElement('div');
+  el.className =
+    `toast-enter pointer-events-auto mx-2 w-[520px] max-w-[92vw] rounded-2xl px-4 py-3 text-white shadow-2xl ${colors[type]}`;
+  el.innerHTML = `
+    <div class="flex items-start gap-3">
+      <div class="mt-0.5 text-xl/5">${icon}</div>
+      <div class="flex-1">
+        <div class="font-semibold">${title}</div>
+        ${message ? `<div class="text-sm opacity-90">${message}</div>` : ''}
+      </div>
+      <button class="ml-2 rounded-md/50 px-2 text-white/80 hover:text-white">Close</button>
+    </div>
+  `;
+
+  root.appendChild(el);
+  // animate in
+  requestAnimationFrame(() => {
+    el.classList.remove('toast-enter');
+    el.classList.add('toast-enter-active');
+  });
+
+  const close = () => {
+    el.classList.remove('toast-enter-active');
+    el.classList.add('toast-exit-active');
+    setTimeout(() => el.remove(), 160);
+  };
+  el.querySelector('button').addEventListener('click', close);
+
+  if (ms > 0) setTimeout(close, ms);
+}
+
+// Helper: show fetch API errors nicely
+async function jsonFetch(url, opts={}) {
+  const res = await fetch(url, { headers:{'Content-Type':'application/json'}, ...opts });
+  let data = null;
+  try { data = await res.json(); } catch(_) {}
+  if (!res.ok || (data && data.ok === false)) {
+    const msg = (data && (data.error || data.message)) || `HTTP ${res.status}`;
+    toast('error','Action failed', msg, 5000);
+    throw new Error(msg);
+  }
+  return data ?? {};
+}
 </script>
 </body>
 </html>

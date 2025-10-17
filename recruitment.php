@@ -115,6 +115,19 @@ try {
   letter-spacing: .005em;
 }
 
+/* -- User menu (top-right) -- */
+.user-menu{ position:relative }
+.user-menu .menu{
+  position:absolute; right:0; margin-top:.5rem; width:11rem;
+  background:#fff; border:1px solid #e5e7eb; border-radius:.75rem;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+.user-menu a{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.5rem .75rem; font-size:.9rem; color:#0f172a;
+}
+.user-menu a:hover{ background:#f8fafc }
+
 
 </style>
 </head>
@@ -137,11 +150,34 @@ try {
         <a href="#" class="relative w-10 h-10 grid place-items-center rounded-xl ring-1 ring-rose-300/70 text-rose-600 hover:bg-rose-50">
           <i class="fa-regular fa-bell"></i><span class="dot-badge">•</span>
         </a>
-        <div class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow">
-          <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold"><?php echo strtoupper(substr($u['name'],0,2)); ?></div>
-          <div class="leading-tight pr-1">
-            <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]"><?php echo htmlspecialchars($u['name']); ?></div>
-            <div class="text-[11px] text-slate-500 capitalize"><?php echo htmlspecialchars($u['role']); ?></div>
+       <!-- User menu -->
+        <div class="user-menu" id="userMenuRoot">
+          <button id="userMenuBtn"
+                  class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow hover:bg-slate-50">
+            <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold">
+              <?php echo strtoupper(substr($u['name'],0,2)); ?>
+            </div>
+            <div class="leading-tight pr-1 text-left">
+              <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]">
+                <?php echo htmlspecialchars($u['name']); ?>
+              </div>
+              <div class="text-[11px] text-slate-500 capitalize">
+                <?php echo htmlspecialchars($u['role']); ?>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+          </button>
+
+          <!-- Dropdown -->
+          <div id="userMenu" class="menu hidden">
+            <a href="profile.php">
+              <i class="fa-regular fa-user text-rose-600 w-5 text-center"></i>
+              <span>View Profile</span>
+            </a>
+            <a href="logout.php">
+              <i class="fa-solid fa-right-from-bracket text-rose-600 w-5 text-center"></i>
+              <span>Log Out</span>
+            </a>
           </div>
         </div>
       </div>
@@ -382,6 +418,22 @@ window.__recruitmentBooted = true;
   });
   if(localStorage.getItem('sb-collapsed')==='1'){ sb.classList.add('collapsed'); }
   applyShift();
+
+  /* ===== User menu toggle (top-right) ===== */
+(function(){
+  const root = document.getElementById('userMenuRoot');
+  const btn  = document.getElementById('userMenuBtn');
+  const menu = document.getElementById('userMenu');
+  if (!root || !btn || !menu) return;
+
+  function close(){ menu.classList.add('hidden'); }
+  function toggle(e){ e.stopPropagation(); menu.classList.toggle('hidden'); }
+
+  btn.addEventListener('click', toggle);
+  document.addEventListener('click', (e)=>{ if (!root.contains(e.target)) close(); });
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') close(); });
+})();
+
 
   /* ================= Toast / Modal / Drawer ================= */
   const toast=(m)=>{ const t=document.getElementById('toast'); t.textContent=m; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'),2200); };

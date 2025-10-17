@@ -141,6 +141,19 @@ try { $pdo->exec("SET time_zone = '+08:00'"); } catch (Throwable $e) {}
         #contentWrap{ padding-left: 0 !important; }
         #topbarPad{ margin-left: 0 !important; }
       }
+      /* -- User menu (top-right) -- */
+      .user-menu{ position:relative }
+      .user-menu .menu{
+        position:absolute; right:0; margin-top:.5rem; width:11rem;
+        background:#fff; border:1px solid #e5e7eb; border-radius:.75rem;
+        box-shadow:0 12px 28px rgba(0,0,0,.08);
+      }
+      .user-menu a{
+        display:flex; align-items:center; gap:.5rem;
+        padding:.5rem .75rem; font-size:.9rem; color:#0f172a;
+      }
+      .user-menu a:hover{ background:#f8fafc }
+
     </style>
   </head>
   <body class="bg-slate-50">
@@ -161,11 +174,35 @@ try { $pdo->exec("SET time_zone = '+08:00'"); } catch (Throwable $e) {}
             <i class="fa-regular fa-bell"></i><span id="bellDot" class="dot-badge">•</span>
           </a>
           <a href="apply.php" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white px-3 py-2 rounded-lg text-sm">Public Apply</a>
-          <div class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow">
-            <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold"><?php echo strtoupper(substr($u['name'],0,2)); ?></div>
-            <div class="leading-tight pr-1">
-              <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]"><?php echo htmlspecialchars($u['name']); ?></div>
-              <div class="text-[11px] text-slate-500 capitalize"><?php echo htmlspecialchars($u['role']); ?></div>
+         <!-- User menu -->
+          <div class="user-menu" id="userMenuRoot">
+            <button id="userMenuBtn"
+                    class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow hover:bg-slate-50">
+              <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold">
+                <?php echo strtoupper(substr($u['name'],0,2)); ?>
+              </div>
+              <div class="leading-tight pr-1 text-left">
+                <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]">
+                  <?php echo htmlspecialchars($u['name']); ?>
+                </div>
+                <div class="text-[11px] text-slate-500 capitalize">
+                  <?php echo htmlspecialchars($u['role']); ?>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+
+            <!-- Dropdown -->
+            <div id="userMenu"
+                class="menu hidden">
+              <a href="profile.php">
+                <i class="fa-regular fa-user text-rose-600 w-5 text-center"></i>
+                <span>View Profile</span>
+              </a>
+              <a href="logout.php">
+                <i class="fa-solid fa-right-from-bracket text-rose-600 w-5 text-center"></i>
+                <span>Log Out</span>
+              </a>
             </div>
           </div>
         </div>
@@ -410,6 +447,26 @@ try { $pdo->exec("SET time_zone = '+08:00'"); } catch (Throwable $e) {}
   window.addEventListener('resize', ()=>{ clearTimeout(window.__rsz); window.__rsz = setTimeout(syncLayout,120); });
   syncLayout();
 
+  /* ===== User menu toggle ===== */
+(function(){
+  const root = document.getElementById('userMenuRoot');
+  const btn  = document.getElementById('userMenuBtn');
+  const menu = document.getElementById('userMenu');
+  if (!root || !btn || !menu) return;
+
+  function close(){ menu.classList.add('hidden'); }
+  function toggle(e){ e.stopPropagation(); menu.classList.toggle('hidden'); }
+
+  btn.addEventListener('click', toggle);
+  document.addEventListener('click', (e)=>{
+    if (!root.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') close();
+  });
+})();
+
+
   /* ================== Filters ================== */
   const fQuery=document.getElementById('fQuery');
   const fStatus=document.getElementById('fStatus');
@@ -599,8 +656,8 @@ try { $pdo->exec("SET time_zone = '+08:00'"); } catch (Throwable $e) {}
       const viaE = document.getElementById('viaEmail').checked ? 1 : 0;
       const viaS = document.getElementById('viaSMS').checked   ? 1 : 0;
       if (!msg) { toast('Message is empty'); return; }
-      const res = await api({
-        action:'applicant.notify', applicant_id: id, to_email: email,
+     const res = await api({
+        action:'notify', applicant_id: id, to_email: email,
         status: status, message: msg, via_email: viaE, via_sms: viaS
       });
       toast(res.ok ? 'Notification sent' : (res.error || 'Notify failed'));
@@ -784,28 +841,30 @@ if (btn.classList.contains('act-status')) {
 
       if (!d || !t) { toast('Please pick a date and time.'); return; }
 
-      // 1) Save schedule (backend will set status to "screening")
-      const rSched = await api({
-        action: 'applicant.schedule',
-        applicant_id: id,
-        date: d,
-        time: t,
-        mode: md,
-        notes: nt
-      });
-      if (!rSched.ok) { toast(rSched.error || 'Failed to save schedule'); return; }
+          // 1) Save schedule (backend also sends email)
+    const rSched = await api({
+      action: 'applicant.schedule',
+      applicant_id: id,
+      date: d,
+      time: t,
+      mode: md,
+      notes: nt
+    });
+    if (!rSched.ok) { toast(rSched.error || 'Failed to save schedule'); return; }
 
-      // 2) Update UI to Screening (no auto-hire)
-      tr.dataset.status = 'screening';
-      tr.querySelector('.status-label').textContent = 'Screening';
-      toast('Interview scheduled');
-      filter();
+    // 2) Update UI to Screening
+    tr.dataset.status = 'screening';
+    tr.querySelector('.status-label').textContent = 'Screening';
+    filter();
 
-      // 3) Email: interview schedule (neutral wording)
-      const when = new Date(`${d}T${t}`);
-      const whenText = isNaN(when)
-        ? `${d} ${t}`
-        : when.toLocaleString(undefined, { month:'short', day:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+   // 3) Toast (neutral kapag walang email)
+  if (rSched.emailed === true) {
+    toast('Interview scheduled • Email sent');
+  } else {
+    toast('Interview scheduled');
+  }
+
+
 
       const msg =
   `Hi ${name},

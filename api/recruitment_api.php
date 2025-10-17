@@ -133,6 +133,63 @@ function audit_log(PDO $pdo, string $entity, int $entity_id, string $action, arr
   } catch(Throwable $e) { return; }
 }
 
+function sendNewHireLink(PDO $pdo, int $applicantId): void {
+  // make sure may columns (best-effort only)
+  try {
+    $pdo->exec("ALTER TABLE applicants
+      ADD COLUMN IF NOT EXISTS onboarding_token VARCHAR(64) NULL,
+      ADD COLUMN IF NOT EXISTS onboarding_token_expires DATETIME NULL");
+  } catch (Throwable $__) {}
+
+  // fetch applicant (email + name)
+  $st = $pdo->prepare("SELECT email, COALESCE(full_name,name) AS name FROM applicants WHERE id=?");
+  $st->execute([$applicantId]);
+  $a = $st->fetch(PDO::FETCH_ASSOC) ?: [];
+  $email = trim((string)($a['email'] ?? ''));
+  $name  = $a['name'] ?? 'New Hire';
+  if ($email === '') return; // no email on file
+
+  // generate token + expiry (7 days)
+  try { $token = bin2hex(random_bytes(16)); } catch (Throwable $__) { $token = sha1(uniqid('',true)); }
+  $exp = date('Y-m-d H:i:s', time() + 7*24*60*60);
+  $pdo->prepare("UPDATE applicants SET onboarding_token=?, onboarding_token_expires=? WHERE id=?")
+      ->execute([$token,$exp,$applicantId]);
+
+  // absolute link (ex: http://host/app/newhire.php?t=TOKEN)
+  $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off') ? 'https' : 'http';
+  $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+  $base   = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '/'), '/\\');         // /api
+  $root   = rtrim(preg_replace('~/api$~','',$base),'/');                   // app root
+  $link   = "$scheme://$host$root/newhire.php?t=$token";
+
+  $subj = "Welcome to HR1 Nextgenmms – Onboarding";
+  $html = "Hi ".htmlspecialchars($name).",<br><br>
+           Congratulations! Your application status is now <b>Hired</b>.<br><br>
+           Please complete your new-hire requirements using this secure link:<br>
+           <a href=\"$link\">$link</a><br><br>
+           This link will expire in 7 days.<br><br>
+           Thank you,<br>HR1 Nextgenmms – HR Department";
+
+  // send (uses sendHRMail from mail_config.php)
+  [$ok,$err] = sendHRMail($email, $subj, $html);
+
+  // best-effort log
+  if (column_exists($pdo,'notifications','applicant_id')) {
+    if (column_exists($pdo,'notifications','channel')) {
+      $pdo->prepare("INSERT INTO notifications
+        (applicant_id, channel, subject, message, status_from, status_to, sent_ok, error_text, created_at)
+        VALUES (?, 'email', ?, ?, 'hired', 'onboarding', ?, ?, NOW())")
+        ->execute([$applicantId,$subj,$html,$ok?1:0, $ok?'':$err]);
+    } else {
+      $pdo->prepare("INSERT INTO notifications
+        (applicant_id, channel_email, channel_sms, subject, message, status_from, status_to, sent_ok, error_text, created_at)
+        VALUES (?, 1, 0, ?, ?, 'hired', 'onboarding', ?, ?, NOW())")
+        ->execute([$applicantId,$subj,$html,$ok?1:0, $ok?'':$err]);
+    }
+  }
+}
+
+
 $in = in();
 $action = $in['action'] ?? ($_POST['action'] ?? '');
 
@@ -417,33 +474,67 @@ if ($action === 'set_status') {
   $status = mapApplicantStatus($st);
   $pdo->prepare("UPDATE applicants SET status=? WHERE id=?")->execute([$status,$id]);
 
-  // Auto-create onboarding plan if hired (same behavior as applicant.update_status)
+  // Auto-add to employees when hired
   if ($status === 'hired') {
+    require_once __DIR__ . '/employees_lib.php';
+    insert_or_update_employee_from_applicant($pdo, (int)$id);
+  }
+
+    /* === AUTO-CREATE ONBOARDING PLAN WHEN HIRED === */
+  if (stripos($status, 'hired') !== false) {
     try {
-      $a = $pdo->prepare("SELECT name, full_name, role, site FROM applicants WHERE id=?");
+      $a = $pdo->prepare("SELECT full_name, name, role, site FROM applicants WHERE id=?");
       $a->execute([$id]);
       $ar = $a->fetch(PDO::FETCH_ASSOC) ?: [];
 
-      $hire  = $ar['name'] ?? ($ar['full_name'] ?? ('Applicant #'.$id));
-      $role  = $ar['role'] ?? '';
-      $site  = $ar['site'] ?? '';
-      $start = date('Y-m-d');
+      $hireName = $ar['full_name'] ?: ($ar['name'] ?? 'Applicant #'.$id);
+      $role     = $ar['role'] ?? 'New Hire';
+      $site     = $ar['site'] ?? 'Main Branch';
+      $start    = date('Y-m-d');
 
-      if (column_exists($pdo,'onboarding_plans','applicant_id')) {
+      // Check if already exists
+      $exists = false;
+      if (column_exists($pdo, 'onboarding_plans', 'applicant_id')) {
         $s = $pdo->prepare("SELECT id FROM onboarding_plans WHERE applicant_id=?");
-        $s->execute([$id]); $exists = (bool)$s->fetch();
-        if (!$exists) {
-          $pdo->prepare("INSERT INTO onboarding_plans (applicant_id, hire_name, role, site, start_date, status, progress, created_at)
-                         VALUES (?,?,?,?,?,'Pending',0,NOW())")
-              ->execute([$id,$hire,$role,$site,$start]);
-        }
+        $s->execute([$id]);
+        $exists = (bool)$s->fetch();
+      } else {
+        $s = $pdo->prepare("SELECT id FROM onboarding_plans WHERE hire_name=?");
+        $s->execute([$hireName]);
+        $exists = (bool)$s->fetch();
       }
-    } catch (Throwable $__){ }
+
+      if (!$exists) {
+        file_put_contents(__DIR__ . '/../debug.log', "🟡 Creating onboarding plan for #$id ($hireName)\n", FILE_APPEND);
+
+        $cols = "hire_name, role, site, start_date, status, progress, created_at";
+        $vals = [$hireName, $role, $site, $start, 'Pending', 0, date('Y-m-d H:i:s')];
+        if (column_exists($pdo, 'onboarding_plans', 'applicant_id')) {
+          $cols = "applicant_id, " . $cols;
+          array_unshift($vals, $id);
+        }
+        $pdo->prepare("INSERT INTO onboarding_plans ($cols) VALUES (" . str_repeat('?,', count($vals)-1) . "?)")->execute($vals);
+        file_put_contents(__DIR__ . '/../debug.log', "✅ Onboarding plan added for applicant #$id\n", FILE_APPEND);
+      } else {
+        file_put_contents(__DIR__ . '/../debug.log', "ℹ️ Onboarding already exists for applicant #$id\n", FILE_APPEND);
+      }
+    } catch (Throwable $e) {
+      file_put_contents(__DIR__ . '/../debug.log', "❌ Onboarding auto-create failed: ".$e->getMessage()."\n", FILE_APPEND);
+    }
+  }
+
+
+  // 👉 ADD THIS: send the New Hire link email when hired
+  if ($status === 'hired') {
+    sendNewHireLink($pdo, (int)$id);
   }
 
   audit_log($pdo, 'applicant', $id, 'set_status', ['status'=>$status]);
   ok(['id'=>$id,'status'=>$status]);
 }
+
+
+
 
 /* ================== schedule (alias of applicant.schedule) ================== */
 if ($action === 'schedule') {
@@ -684,53 +775,74 @@ if ($action === 'applicant.update_status') {
   $st  = trim((string)($in['status'] ?? 'New'));
   if ($id <= 0) fail('Invalid applicant_id');
 
+  // normalize + save
   $status = mapApplicantStatus($st);
-  $q = $pdo->prepare("UPDATE applicants SET status=? WHERE id=?");
-  $q->execute([$status, $id]);
+  $pdo->prepare("UPDATE applicants SET status=? WHERE id=?")->execute([$status,$id]);
 
-  /* ===== AUTO-CREATE ONBOARDING PLAN WHEN STATUS = HIRED ===== */
-  if ($status === 'hired') {
+  /* === AUTO-ADD TO EMPLOYEES WHEN HIRED === */
+  if (stripos($status, 'hired') !== false) {
     try {
-      $a = $pdo->prepare("SELECT name, full_name, role, site FROM applicants WHERE id=?");
+      require_once __DIR__ . '/employees_api.php';
+      if (function_exists('insert_or_update_employee_from_applicant')) {
+        insert_or_update_employee_from_applicant($pdo, (int)$id);
+      }
+    } catch (Throwable $__) { /* ignore best-effort */ }
+  }
+
+  /* === SEND NEW-HIRE LINK EMAIL (newhire.php) WHEN HIRED === */
+  if (stripos($status, 'hired') !== false) {
+    try { sendNewHireLink($pdo, (int)$id); } catch (Throwable $__) { /* ignore */ }
+  }
+
+    /* === AUTO-CREATE ONBOARDING PLAN WHEN HIRED === */
+  if (stripos($status, 'hired') !== false) {
+    try {
+      $a = $pdo->prepare("SELECT full_name, name, role, site FROM applicants WHERE id=?");
       $a->execute([$id]);
       $ar = $a->fetch(PDO::FETCH_ASSOC) ?: [];
 
-      $hire  = $ar['name'] ?? ($ar['full_name'] ?? ('Applicant #'.$id));
-      $role  = $ar['role'] ?? '';
-      $site  = $ar['site'] ?? '';
-      $start = date('Y-m-d');
+      $hireName = $ar['full_name'] ?: ($ar['name'] ?? 'Applicant #'.$id);
+      $role     = $ar['role'] ?? 'New Hire';
+      $site     = $ar['site'] ?? 'Main Branch';
+      $start    = date('Y-m-d');
 
+      // Check if already exists
       $exists = false;
-      if (column_exists($pdo,'onboarding_plans','applicant_id')) {
+      if (column_exists($pdo, 'onboarding_plans', 'applicant_id')) {
         $s = $pdo->prepare("SELECT id FROM onboarding_plans WHERE applicant_id=?");
-        $s->execute([$id]); $exists = (bool)$s->fetch();
+        $s->execute([$id]);
+        $exists = (bool)$s->fetch();
       } else {
         $s = $pdo->prepare("SELECT id FROM onboarding_plans WHERE hire_name=?");
-        $s->execute([$hire]); $exists = (bool)$s->fetch();
+        $s->execute([$hireName]);
+        $exists = (bool)$s->fetch();
       }
 
       if (!$exists) {
-        if (column_exists($pdo,'onboarding_plans','applicant_id')) {
-          $ins = $pdo->prepare("
-            INSERT INTO onboarding_plans (applicant_id, hire_name, role, site, start_date, status, progress, created_at)
-            VALUES (?,?,?,?,?,'Pending',0,NOW())
-          ");
-          $ins->execute([$id,$hire,$role,$site,$start]);
-        } else {
-          $ins = $pdo->prepare("
-            INSERT INTO onboarding_plans (hire_name, role, site, start_date, status, progress, created_at)
-            VALUES (?,?,?,?, 'Pending',0,NOW())
-          ");
-          $ins->execute([$hire,$role,$site,$start]);
+        file_put_contents(__DIR__ . '/../debug.log', "🟡 Creating onboarding plan for #$id ($hireName)\n", FILE_APPEND);
+
+        $cols = "hire_name, role, site, start_date, status, progress, created_at";
+        $vals = [$hireName, $role, $site, $start, 'Pending', 0, date('Y-m-d H:i:s')];
+        if (column_exists($pdo, 'onboarding_plans', 'applicant_id')) {
+          $cols = "applicant_id, " . $cols;
+          array_unshift($vals, $id);
         }
+        $pdo->prepare("INSERT INTO onboarding_plans ($cols) VALUES (" . str_repeat('?,', count($vals)-1) . "?)")->execute($vals);
+        file_put_contents(__DIR__ . '/../debug.log', "✅ Onboarding plan added for applicant #$id\n", FILE_APPEND);
+      } else {
+        file_put_contents(__DIR__ . '/../debug.log', "ℹ️ Onboarding already exists for applicant #$id\n", FILE_APPEND);
       }
-    } catch (Throwable $__){ /* ignore auto-create errors */ }
+    } catch (Throwable $e) {
+      file_put_contents(__DIR__ . '/../debug.log', "❌ Onboarding auto-create failed: ".$e->getMessage()."\n", FILE_APPEND);
+    }
   }
-  /* ===== END AUTO-CREATE BLOCK ===== */
+
 
   audit_log($pdo, 'applicant', $id, 'update_status', ['status'=>$status]);
   ok(['id'=>$id,'status'=>$status]);
 }
+
+
 
 /* ---- Archive applicant ---- */
 if ($action === 'applicant.archive') {

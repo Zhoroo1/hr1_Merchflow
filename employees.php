@@ -43,6 +43,7 @@ function pickcol(PDO $pdo, string $table, array $options): ?string {
   return null;
 }
 
+
 /* ============= AJAX: return new-hire files for an employee ============= */
 if (isset($_GET['ajax']) && $_GET['ajax'] === 'files') {
   header('Content-Type: application/json; charset=utf-8');
@@ -227,9 +228,29 @@ function display_status_label($raw) {
   .iconbtn:last-child{margin-right:0}
   .iconbtn:hover{background:#f1f5f9;transform:scale(1.05)}
   .emp-tbl td, .emp-tbl th {padding-top:14px;padding-bottom:14px;}
+  #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:70;display:none}
+  #toast.show{display:block}
+  /* --- User menu (top-right) --- */
+  .user-menu{ position:relative }
+  .user-menu .menu{
+    position:absolute; right:0; margin-top:.5rem; width:11rem;
+    background:#fff; border:1px solid #e5e7eb; border-radius:.75rem;
+    box-shadow:0 12px 28px rgba(0,0,0,.08); z-index:50;
+  }
+  .user-menu a{
+    display:flex; align-items:center; gap:.5rem;
+    padding:.5rem .75rem; font-size:.9rem; color:#0f172a;
+  }
+  .user-menu a:hover{ background:#f8fafc }
+  .hidden{ display:none; }
+
+
   </style>
 </head>
 <body class="bg-slate-50">
+  <!-- Toast -->
+<div id="toast" class="px-4 py-2 rounded-lg bg-emerald-600 text-white shadow text-sm"></div>
+
 
 <header class="sticky top-0 z-40">
   <div id="topbarPad" class="ml-64 bg-white/90 backdrop-blur border-b border-slate-200">
@@ -238,13 +259,34 @@ function display_status_label($raw) {
         <i class="fa-solid fa-bars"></i>
       </button>
       <div class="flex-1"></div>
-      <div class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow">
-        <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold">
-          <?php echo strtoupper(substr($u['name'],0,2)); ?>
-        </div>
-        <div class="leading-tight pr-1">
-          <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]"><?php echo htmlspecialchars($u['name']); ?></div>
-          <div class="text-[11px] text-slate-500 capitalize"><?php echo htmlspecialchars($u['role']); ?></div>
+     <!-- User menu -->
+      <div class="user-menu" id="userMenuRoot">
+        <button id="userMenuBtn"
+                class="ml-1 flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white ring-1 ring-slate-200 shadow hover:bg-slate-50">
+          <div class="w-8 h-8 rounded-md bg-rose-500 text-white grid place-items-center text-xs font-semibold">
+            <?php echo strtoupper(substr($u['name'],0,2)); ?>
+          </div>
+          <div class="leading-tight pr-1 text-left">
+            <div class="text-sm font-medium text-slate-800 truncate max-w-[120px]">
+              <?php echo htmlspecialchars($u['name']); ?>
+            </div>
+            <div class="text-[11px] text-slate-500 capitalize">
+              <?php echo htmlspecialchars($u['role']); ?>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+        </button>
+
+        <!-- Dropdown -->
+        <div id="userMenu" class="menu hidden">
+          <a href="profile.php">
+            <i class="fa-regular fa-user text-rose-600 w-5 text-center"></i>
+            <span>View Profile</span>
+          </a>
+          <a href="logout.php">
+            <i class="fa-solid fa-right-from-bracket text-rose-600 w-5 text-center"></i>
+            <span>Log Out</span>
+          </a>
         </div>
       </div>
     </div>
@@ -300,20 +342,28 @@ function display_status_label($raw) {
 
       <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h1 class="text-2xl font-semibold text-rose-600">Employees</h1>
-        <div class="flex items-center gap-3">
-          <button id="btnShowArchived" type="button"
-                  class="inline-flex items-center gap-2 h-10 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50">
-            <i class="fa-solid fa-box-archive"></i>
-            Show Archived
-          </button>
-          <button id="btnExportPdf" type="button"
-                  class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg shadow inline-flex items-center gap-2"
-                  title="Export to PDF">
-            <i class="fa-regular fa-file-pdf"></i>
-            Export PDF
-          </button>
-        </div>
-      </div>
+       <div class="flex items-center gap-3">
+  <button id="btnAddEmployee" type="button"
+          class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg shadow inline-flex items-center gap-2"
+          title="Add new employee">
+    <i class="fa-solid fa-user-plus"></i>
+    Add Employee
+  </button>
+
+  <button id="btnShowArchived" type="button"
+          class="inline-flex items-center gap-2 h-10 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50">
+    <i class="fa-solid fa-box-archive"></i>
+    Show Archived
+  </button>
+
+  <button id="btnExportPdf" type="button"
+          class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg shadow inline-flex items-center gap-2"
+          title="Export to PDF">
+    <i class="fa-regular fa-file-pdf"></i>
+    Export PDF
+  </button>
+</div>
+
 
       <div class="mb-4 flex flex-wrap items-center gap-3">
         <div class="relative w-full sm:w-80">
@@ -699,10 +749,78 @@ if (q) {
 if (fRole)   fRole.addEventListener('change', applyFilters);
 if (fStatus) fStatus.addEventListener('change', applyFilters);
 
+/* ===== Add Employee Modal ===== */
+const btnAdd = document.getElementById('btnAddEmployee');
+btnAdd?.addEventListener('click', () => {
+  openModal('Add New Employee', `
+    <div class="space-y-3">
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Full Name</label>
+        <input id="empName" type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-rose-300" placeholder="Employee full name">
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Role / Position</label>
+        <input id="empRole" type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-rose-300" placeholder="e.g. Store Manager">
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Department</label>
+        <input id="empDept" type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-rose-300" placeholder="e.g. Operations">
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Email</label>
+        <input id="empEmail" type="email" class="w-full border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-rose-300" placeholder="name@example.com">
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Status</label>
+        <select id="empStatus" class="w-full border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-rose-300">
+          <option value="Active">Active</option>
+          <option value="Probation">Probation</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+  `, 'Save', async () => {
+    const name   = document.getElementById('empName').value.trim();
+    const role   = document.getElementById('empRole').value.trim();
+    const dept   = document.getElementById('empDept').value.trim();
+    const email  = document.getElementById('empEmail').value.trim();
+    const status = document.getElementById('empStatus').value.trim();
+
+    if (!name) { alert('Name is required'); return; }
+
+    const res = await apiEmployees({
+      action: 'add_manual',
+      name, role, dept, email, status
+    });
+
+    if (res && res.ok) {
+      alert('✅ Employee added successfully!');
+      location.reload();
+    } else {
+      alert(res.error || 'Failed to add employee.');
+    }
+  });
+});
+
 
 /* ===== initial ===== */
 function init(){ applyFilters(); }
 init();
+/* ===== User menu toggle (top-right) ===== */
+(function(){
+  const root = document.getElementById('userMenuRoot');
+  const btn  = document.getElementById('userMenuBtn');
+  const menu = document.getElementById('userMenu');
+  if (!root || !btn || !menu) return;
+
+  function close(){ menu.classList.add('hidden'); }
+  function toggle(e){ e.stopPropagation(); menu.classList.toggle('hidden'); }
+
+  btn.addEventListener('click', toggle);
+  document.addEventListener('click', (e)=>{ if (!root.contains(e.target)) close(); });
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') close(); });
+})();
+
 </script>
 </body>
 </html>
