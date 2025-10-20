@@ -6,12 +6,12 @@ session_start();
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../mail_config.php'; // sendHRMail()
+require_once __DIR__ . '/../mail_config.php'; // <-- dito nanggagaling ang sendHRMail()
 
-// --- Auth guard ---
+// --- Auth guard (admins lang) ---
 if (empty($_SESSION['user'])) { http_response_code(401); echo json_encode(['ok'=>false,'error'=>'Not authenticated']); exit; }
 $meRole = strtolower($_SESSION['user']['role'] ?? '');
-if (!in_array($meRole, ['admin','hr manager'])) { http_response_code(403); echo json_encode(['ok'=>false,'error'=>'Forbidden']); exit; }
+if (!in_array($meRole, ['admin','superadmin'])) { http_response_code(403); echo json_encode(['ok'=>false,'error'=>'Forbidden']); exit; }
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 date_default_timezone_set('Asia/Manila');
@@ -27,20 +27,18 @@ function out($data) {
 function fail($msg, $code=400) {
   http_response_code($code); echo json_encode(['ok'=>false,'error'=>$msg]); exit;
 }
-
-$in = read_json();
-$action = $in['action'] ?? '';
-
-/* ---------- Helpers ---------- */
 function user_row(PDO $pdo, int $id) {
   $st = $pdo->prepare("SELECT id, name, email, role, is_active, created_at FROM users WHERE id=?");
   $st->execute([$id]);
   return $st->fetch(PDO::FETCH_ASSOC);
 }
 
-/* ---------- Actions ---------- */
+$in = read_json();
+$action = $in['action'] ?? '';
+
 try {
 
+  /* ---------- LIST ---------- */
   if ($action === 'list') {
     $q = trim((string)($in['q'] ?? ''));
     if ($q !== '') {
@@ -55,11 +53,10 @@ try {
                          FROM users
                          ORDER BY id DESC");
     }
-    $rows = $st->fetchAll(PDO::FETCH_ASSOC);
-    out(['rows'=>$rows]);
+    out(['rows'=>$st->fetchAll(PDO::FETCH_ASSOC)]);
   }
 
-  /* ---------- ADD (HTML email with RED Login button) ---------- */
+  /* ---------- ADD (auto-send welcome email) ---------- */
   if ($action === 'add') {
     $name  = trim((string)($in['name'] ?? ''));
     $email = trim((string)($in['email'] ?? ''));
@@ -69,9 +66,8 @@ try {
     if ($name==='' || $email==='' || $pwd==='') fail('Name, email, password required');
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) fail('Invalid email');
 
-    // only allow these roles
     $roles = ['admin','hr manager','employee'];
-    if (!in_array($role, $roles)) $role = 'employee';
+    if (!in_array($role, $roles, true)) $role = 'employee';
 
     // unique email
     $chk = $pdo->prepare("SELECT 1 FROM users WHERE email=?");
@@ -80,21 +76,18 @@ try {
 
     // insert
     $hash = password_hash($pwd, PASSWORD_DEFAULT);
-    $ins = $pdo->prepare("INSERT INTO users (name,email,role,password_hash,created_at) VALUES (?,?,?,?, NOW())");
+    $ins = $pdo->prepare("INSERT INTO users (name,email,role,password_hash,is_active,created_at)
+                          VALUES (?,?,?,?,1,NOW())");
     $ins->execute([$name,$email,$role,$hash]);
     $newId = (int)$pdo->lastInsertId();
 
-    // Build absolute login URL
+    // Absolute login URL (works kahit nasa /api/)
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    // we are in /api/users_api.php -> go up one folder to site root
     $base   = rtrim(dirname(dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/\\');
     $loginUrl = "{$scheme}://{$host}{$base}/login.php";
 
-    // Fix role label
     $roleNice = ucwords($role);
-
-    // HTML email (button in RED, clickable to login.php)
     $subject = 'Welcome to HR1 Nextgenmms';
     $html = <<<HTML
     <div style="font-family:Inter,Segoe UI,Arial,sans-serif;font-size:14px;color:#0f172a;line-height:1.5">
@@ -115,10 +108,9 @@ try {
       <p style="color:#64748b;margin-top:22px">— HR1 Nextgenmms</p>
     </div>
     HTML;
-
     $alt = "Welcome to HR1 Nextgenmms\n\nEmail: {$email}\nPassword: {$pwd}\nRole: {$roleNice}\n\nLogin: {$loginUrl}";
 
-    // send (don’t block creation if email fails)
+    // send (hindi pipigil sa create kung mag-fail ang email)
     [$okMail, $errMail] = sendHRMail($email, $subject, $html, $alt);
     if (!$okMail) error_log('[users_api add] mail error: ' . ($errMail ?? 'unknown'));
 
@@ -129,6 +121,7 @@ try {
     ]);
   }
 
+  /* ---------- UPDATE ---------- */
   if ($action === 'update') {
     $id    = (int)($in['id'] ?? 0);
     $name  = trim((string)($in['name'] ?? ''));
@@ -141,7 +134,7 @@ try {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) fail('Invalid email');
 
     $roles = ['admin','hr manager','employee'];
-    if (!in_array($role, $roles)) $role = 'employee';
+    if (!in_array($role, $roles, true)) $role = 'employee';
     $active = $active ? 1 : 0;
 
     // unique email (exclude self)
@@ -154,6 +147,7 @@ try {
     out(['user'=>user_row($pdo,$id)]);
   }
 
+  /* ---------- DELETE ---------- */
   if ($action === 'delete') {
     $id = (int)($in['id'] ?? 0);
     if ($id <= 0) fail('Invalid id');
@@ -163,6 +157,7 @@ try {
     out(['ok'=>true]);
   }
 
+  /* ---------- TOGGLE ACTIVE ---------- */
   if ($action === 'toggle_active') {
     $id = (int)($in['id'] ?? 0);
     if ($id <= 0) fail('Invalid id');
@@ -170,6 +165,7 @@ try {
     out(['user'=>user_row($pdo,$id)]);
   }
 
+  /* ---------- RESET PASSWORD ---------- */
   if ($action === 'reset_pw') {
     $id  = (int)($in['id'] ?? 0);
     $pwd = (string)($in['password'] ?? '');

@@ -5,7 +5,12 @@ if (empty($_SESSION['pending_user'])) { header("Location: login.php"); exit; }
 require_once __DIR__ . '/config/app.php';
 require_once __DIR__ . '/mail_config.php';
 
-/* Masked email for display (real dest could be redirected in dev) */
+/*
+  This version forces OTP delivery to the actual user email stored in
+  $_SESSION['pending_user']['email'] (no DEV_MAIL_REDIRECT override).
+*/
+
+/* Masked email for display only */
 $actualEmail = $_SESSION['pending_user']['email'] ?? '';
 function mask_email($e){
   if (!filter_var($e, FILTER_VALIDATE_EMAIL)) return $e;
@@ -35,16 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'verif
 /* Handle resend */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'resend') {
   $now = time();
-  $last = (int)($_SESSION['2fa_last_sent'] ?? 0);
+  $last = (int)$_SESSION['2fa_last_sent'] ?? 0;
   if ($now - $last < (int)OTP_RESEND_COOLDOWN) {
     $err = 'Please wait a bit before requesting another code.';
   } else {
     $otp = (string)random_int(100000, 999999);
-    $_SESSION['2fa_code'] = $otp;
+    $_SESSION['2fa_code']    = $otp;
     $_SESSION['2fa_expires'] = $now + (int)OTP_TTL;
 
-    $to = (DEV_MAIL_REDIRECT !== '') ? DEV_MAIL_REDIRECT : $actualEmail;
-    if (sendOTP($to, $otp)) {
+    // ALWAYS send to the real user email (no DEV redirect)
+    $to = $actualEmail;
+    error_log('[OTP RESEND] sending to='.$to);
+
+    if ($to && filter_var($to, FILTER_VALIDATE_EMAIL) && sendOTP($to, $otp)) {
       $_SESSION['2fa_last_sent'] = $now;
       $err = 'A new code has been sent.';
     } else {
@@ -58,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'resen
 <head>
   <meta charset="UTF-8" />
   <title>Verify OTP | HR1 MerchFlow</title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-400 to-blue-500 p-4">

@@ -8,6 +8,7 @@ $u = $_SESSION['user'];
 <head>
   <meta charset="UTF-8">
   <title>My Profile</title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 p-8">

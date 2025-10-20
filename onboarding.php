@@ -11,6 +11,8 @@ $brandName = 'Nextgenmms';
 $brandLogo = 'assets/logo2.jpg'; // case-sensitive
 
 require_once __DIR__ . '/includes/config.php'; // STORE_NAME / STORE_SITE
+require __DIR__ . '/includes/idle_logout.php';
+
 
 function isActive($page) {
   $is = basename($_SERVER['PHP_SELF']) === $page;
@@ -23,6 +25,7 @@ function isActive($page) {
 <head>
   <meta charset="UTF-8" />
   <title>Onboarding | HR1 <?= htmlspecialchars($brandName) ?></title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />

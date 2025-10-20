@@ -3,7 +3,7 @@ declare(strict_types=1);
 session_start();
 
 require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/config/app.php';   // USE_2FA / DEV_MAIL_REDIRECT / OTP_TTL
+require_once __DIR__ . '/config/app.php';   // USE_2FA / OTP_TTL (hindi na natin gagamitin ang DEV_MAIL_REDIRECT dito)
 require_once __DIR__ . '/mail_config.php';
 
 try {
@@ -52,20 +52,28 @@ if (USE_2FA) {
   // Do NOT set $_SESSION['user'] yet.
   $otp = (string)random_int(100000, 999999);
 
-  $_SESSION['pending_user']     = $sessionUser;
-  $_SESSION['2fa_code']         = $otp;
-  $_SESSION['2fa_expires']      = time() + (int)OTP_TTL;
-  $_SESSION['post_login_target']= $target;   // so verify_2fa.php knows where to go
+  $_SESSION['pending_user']      = $sessionUser;
+  $_SESSION['2fa_code']          = $otp;
+  $_SESSION['2fa_expires']       = time() + (int)OTP_TTL;
+  $_SESSION['post_login_target'] = $target;   // (optional) kung gagamitin mo sa verify_2fa.php
 
-  // During dev, optionally redirect all mail to a safe inbox
-  $to = (DEV_MAIL_REDIRECT !== '') ? DEV_MAIL_REDIRECT : $sessionUser['email'];
+  // LAGING ipadala sa totoong email ng user (walang dev redirect).
+  $to = $sessionUser['email'];
+  error_log('[LOGIN OTP] sending to='.$to); // maliit na debug log lang
 
   if (sendOTP($to, $otp)) {
     $_SESSION['2fa_last_sent'] = time();
     header('Location: verify_2fa.php'); exit;
   }
+
   // Failed to send OTP — clean up & show error
-  unset($_SESSION['pending_user'], $_SESSION['2fa_code'], $_SESSION['2fa_expires'], $_SESSION['2fa_last_sent'], $_SESSION['post_login_target']);
+  unset(
+    $_SESSION['pending_user'],
+    $_SESSION['2fa_code'],
+    $_SESSION['2fa_expires'],
+    $_SESSION['2fa_last_sent'],
+    $_SESSION['post_login_target']
+  );
   header('Location: login.php?error=otp'); exit;
 }
 

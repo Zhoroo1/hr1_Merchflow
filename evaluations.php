@@ -5,6 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
+
 if (empty($_SESSION['user'])) { header('Location: login.php'); exit; }
 $u = $_SESSION['user'];
 
@@ -18,7 +19,10 @@ if (!in_array($role, ['admin','hr manager'], true)) {
 $brandName = 'Nextgenmms';
 $brandLogo = 'assets/logo2.jpg'; // siguraduhin tama ang filename/case
 
+
 require_once __DIR__ . '/includes/db.php';
+
+
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 date_default_timezone_set('Asia/Manila');
 try { $pdo->exec("SET time_zone = '+08:00'"); } catch (Throwable $e) {}
@@ -383,12 +387,14 @@ $p = [];
 }
 
 /* -------------------- Page (HTML) -------------------- */
+require __DIR__ . '/includes/idle_logout.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Evaluations | HR1 <?= htmlspecialchars($brandName) ?></title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />

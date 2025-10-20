@@ -16,6 +16,7 @@ elseif ($error === 'server') $msg = 'Server error. Please try again later.';
 <head>
   <meta charset="UTF-8">
   <title>HR1 MerchFlow | Login</title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-400 to-blue-500">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Oct 12, 2025 at 01:20 AM
+-- Generation Time: Oct 17, 2025 at 09:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,16 +62,16 @@ CREATE TABLE `applicants` (
 --
 
 INSERT INTO `applicants` (`id`, `full_name`, `email`, `phone`, `source`, `resume_path`, `skills_json`, `status`, `score`, `communication`, `experience`, `culture_fit`, `shortlisted`, `created_at`, `archived`, `name`, `mobile`, `address`, `education`, `yoe`, `role`, `site`, `start_date`, `date_hired`, `onboarding_token`, `onboarding_token_expires`, `updated_at`) VALUES
-(9, 'Danilo Vergara Jr', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-105831-1bc2283d-Danilo-Vergara-Jr.pdf', NULL, '', 43, 80, 90, 85, 1, '2025-10-08 02:58:32', 0, '', '09919317609', '245 Steve Str. Brgy. Commonwealth Qc.', 'College Undergraduate', 0, 'Order Processor', 'Banawe', '2025-10-10', NULL, '545376cb855e9b25cbdd61e9928f5aca0f7f1e880f0238e9', '2025-10-18 20:35:51', '2025-10-12 06:35:06'),
+(9, 'Danilo Vergara Jr', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-105831-1bc2283d-Danilo-Vergara-Jr.pdf', NULL, 'hired', 0, 80, 90, 85, 1, '2025-10-08 02:58:32', 0, '', '09919317609', '245 Steve Str. Brgy. Commonwealth Qc.', 'College Undergraduate', 0, 'Order Processor', 'Banawe', '2025-10-10', NULL, '545376cb855e9b25cbdd61e9928f5aca0f7f1e880f0238e9', '2025-10-18 20:35:51', '2025-10-14 20:42:07'),
 (10, 'Juan Dela Cruz', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-111015-3be3c67b-Juan-Dela-Cruz.pdf', NULL, 'hired', 67, NULL, NULL, NULL, 0, '2025-10-08 03:10:15', 1, '', '09272966548', 'Martan', 'Senior High', 5, 'Store Part Timer', 'Banawe', '2025-10-19', NULL, NULL, NULL, '2025-10-11 01:30:18'),
 (11, 'Kevin Durant', 'kevindurant@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-202052-88880aa1-Kevin-Durant.pdf', NULL, 'hired', 78, NULL, NULL, NULL, 0, '2025-10-08 12:20:52', 1, '', '0973424242', 'canada', 'college', 5, 'Deputy Store Manager', 'Banawe', '2025-10-18', NULL, NULL, NULL, '2025-10-11 05:54:08'),
 (12, 'Mark Juan', 'mark@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-203606-b4147231-Mark-Juan.pdf', NULL, 'hired', 0, NULL, NULL, NULL, 1, '2025-10-08 12:36:06', 0, '', '09209343', 'Steve', 'High school', 4, 'Store Part Timer', 'Banawe', '2025-10-11', NULL, 'f532c15d04c0eebace6e3ed8744e0680a2c0150986ac370f', '2025-10-18 20:35:30', '2025-10-12 02:35:30'),
-(13, 'Alex Santos', 'alex@gmal.com', NULL, NULL, 'uploads/resumes/cv-20251008-212016-bd09ce85-Alex-Santos.pdf', NULL, 'interview', 0, NULL, NULL, NULL, 1, '2025-10-08 13:20:16', 0, '', '0954332', 'martan', 'High school', 5, 'Store Part Timer', 'Banawe', '2025-10-22', NULL, NULL, NULL, '2025-10-12 05:30:40'),
-(14, 'James Villanueva', 'james@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-222800-c6f310ca-James-Villanueva.pdf', NULL, 'interview', 0, NULL, NULL, NULL, 1, '2025-10-08 14:28:00', 0, '', '0932534', 'Metom', 'High School', 1, 'Store Part Timer', 'Banawe', '2025-10-10', NULL, '2af9d53f510a53346c0e55ce49ae99fafe86a1b6f3a30b56', '2025-10-18 02:38:20', '2025-10-11 09:01:00'),
+(13, 'Alex Santos', 'alex@gmal.com', NULL, NULL, 'uploads/resumes/cv-20251008-212016-bd09ce85-Alex-Santos.pdf', NULL, 'hired', 32, NULL, NULL, NULL, 1, '2025-10-08 13:20:16', 0, '', '0954332', 'martan', 'High school', 5, 'Store Part Timer', 'Banawe', '2025-10-22', NULL, NULL, NULL, '2025-10-14 20:42:58'),
+(14, 'James Villanueva', 'james@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251008-222800-c6f310ca-James-Villanueva.pdf', NULL, 'hired', 87, NULL, NULL, NULL, 1, '2025-10-08 14:28:00', 0, '', '0932534', 'Metom', 'High School', 1, 'Store Part Timer', 'Banawe', '2025-10-10', NULL, '2af9d53f510a53346c0e55ce49ae99fafe86a1b6f3a30b56', '2025-10-18 02:38:20', '2025-10-14 20:47:23'),
 (15, 'Mellisa Co', 'mellisa@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-060758-6fcab887-Mellisa-Co.pdf', NULL, '', 0, NULL, NULL, NULL, 1, '2025-10-08 22:07:58', 1, '', '093222344', 'sandigan', 'College Graduate', 0, 'Store Part Timer', 'O!Save – Biñan', '2025-10-11', NULL, NULL, NULL, '2025-10-12 05:57:07'),
 (16, 'Mike  Reyes', 'mike@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-071446-c4f572dd-Mike-Reyes.pdf', NULL, '', 0, NULL, NULL, NULL, 1, '2025-10-08 23:14:46', 1, '', '099332245334', 'Novaliches', 'College Graduate', 3, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-11', NULL, NULL, NULL, '2025-10-12 05:31:27'),
-(17, 'John Cena', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-094336-aab2a6e1-John-Cena.pdf', NULL, 'screening', 0, NULL, NULL, NULL, 1, '2025-10-09 01:43:36', 0, '', '09393334', '', 'High School', 2, 'Store Part Timer', 'Banawe', NULL, NULL, NULL, NULL, '2025-10-11 08:05:04'),
-(19, 'Jake Luigi', 'jake@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-142008-76c5a1e0-Jake-Luigi.pdf', NULL, 'rejected', 0, NULL, NULL, NULL, 0, '2025-10-09 06:20:08', 0, '', '09485455', 'metom', 'College', 4, 'Store Part Timer', 'Banawe', '2025-10-10', NULL, NULL, NULL, '2025-10-12 05:23:27'),
+(17, 'John Cena', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-094336-aab2a6e1-John-Cena.pdf', NULL, 'hired', 87, NULL, NULL, NULL, 0, '2025-10-09 01:43:36', 0, '', '09393334', '', 'High School', 2, 'Store Part Timer', 'Banawe', NULL, NULL, NULL, NULL, '2025-10-14 20:46:18'),
+(19, 'Jake Luigi', 'jake@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-142008-76c5a1e0-Jake-Luigi.pdf', NULL, 'hired', 78, NULL, NULL, NULL, 0, '2025-10-09 06:20:08', 0, '', '09485455', 'metom', 'College', 4, 'Store Part Timer', 'Banawe', '2025-10-10', NULL, 'aaa554f867edf6bbcbbe34e8d1cf5a6f', '2025-10-24 17:00:22', '2025-10-17 23:00:22'),
 (20, 'Hans San jose', 'gagaga@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-171236-251a6079-Hans-San-jose.pdf', NULL, 'rejected', 0, NULL, NULL, NULL, 0, '2025-10-09 09:12:36', 0, '', '0934242423', '', 'Colle', 4, 'Deputy Store Manager', 'Banawe', '2025-10-09', NULL, NULL, NULL, '2025-10-11 05:53:17'),
 (21, 'Angelica Dorado', 'angel@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-181732-14857a09-Angelica-Dorado.pdf', NULL, 'hired', 56, NULL, NULL, NULL, 0, '2025-10-09 10:17:32', 1, '', '09234242', 'Farview', '', 3, 'Deputy Store Manager', 'Banawe', NULL, NULL, NULL, NULL, '2025-10-11 05:53:35'),
 (22, 'Kate Velasco', 'kate@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251009-222633-32470824-Kate-Velasco.pdf', NULL, 'hired', 56, NULL, NULL, NULL, 0, '2025-10-09 14:26:33', 0, '', '098655443', 'LItex', 'High School', 2, 'Cashier', 'Banawe', '2025-10-11', NULL, NULL, NULL, '2025-10-11 01:30:18'),
@@ -81,8 +81,17 @@ INSERT INTO `applicants` (`id`, `full_name`, `email`, `phone`, `source`, `resume
 (26, 'Dan Vergara', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251010-155057-d0d9bdda-Dan-Vergara.pdf', NULL, 'hired', NULL, NULL, NULL, NULL, 0, '2025-10-10 07:50:57', 0, '', '09343345433', 'Martan', 'College', 4, 'Order Processor', 'Banawe', '2025-10-13', NULL, 'b12e44917faec48a9e14406dcaa10df128d6c7dc6b1d6a00', '2025-10-17 23:26:20', '2025-10-11 05:26:20'),
 (27, 'Kyle Varga', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251010-161211-27b19c15-Kyle-Varga.pdf', NULL, 'hired', NULL, NULL, NULL, NULL, 0, '2025-10-10 08:12:11', 0, '', '09343234', 'Steve St', 'College Graduate', 2, 'Store Manager', 'Banawe', '2025-10-11', NULL, 'ae5272727d590018067fa0d1530d861e9a8a9d5b07dec9b1', '2025-10-18 08:17:53', '2025-10-11 14:17:53'),
 (29, 'Lester Santos', 'vergara.136541132229@depedqc.ph', NULL, NULL, 'uploads/resumes/cv-20251011-221203-90cf2782-Lester-Santos.pdf', NULL, 'hired', NULL, NULL, NULL, NULL, 0, '2025-10-11 14:12:06', 0, '', '09234242324', '', 'High School', 3, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-13', NULL, '7144e967b87f8db3445c5248ebc87fb8e4b9f8e651c8e2d5', '2025-10-18 23:06:09', '2025-10-12 05:06:09'),
-(30, 'fessefes', 'fesdfse@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251011-230714-b00e697a-fessefes.pdf', NULL, 'hired', NULL, NULL, NULL, NULL, 0, '2025-10-11 15:07:14', 0, '', 'fesfdsfse', 'dfsefse', '', 32, 'Cashier', 'Banawe', NULL, NULL, '21238f61c6357e605f83abae94833757269f8dc9e11f796b', '2025-10-18 23:12:18', '2025-10-12 05:12:18'),
-(32, 'Jake Miranda', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251012-003245-063377a6-Jake-Miranda.docx', NULL, 'hired', NULL, NULL, NULL, NULL, 0, '2025-10-11 16:32:45', 0, '', '09343223', 'Steve st', 'College', 32, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-13', NULL, '92a4aa6017b228d9a7ee97b5de755fe51e88f456f383f1ff', '2025-10-19 00:33:21', '2025-10-12 06:33:21');
+(32, 'Jake Miranda', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251012-003245-063377a6-Jake-Miranda.docx', NULL, 'hired', 78, NULL, NULL, NULL, 0, '2025-10-11 16:32:45', 0, '', '09343223', 'Steve st', 'College', 32, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-13', NULL, '92a4aa6017b228d9a7ee97b5de755fe51e88f456f383f1ff', '2025-10-19 00:33:21', '2025-10-14 20:47:41'),
+(33, 'Phoenix Luigi', 'gakdwead@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-144110-05493760-Phoenix-Luigi.pdf', NULL, 'hired', 89, NULL, NULL, NULL, 0, '2025-10-14 06:41:10', 0, '', '093242432', 'Marta', '', 2, 'Merchandiser / Promodiser', 'Banawe', '2025-10-15', NULL, NULL, NULL, '2025-10-14 20:41:33'),
+(34, 'Chamber Juan', 'gam@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-145416-15406438-Chamber-Juan.pdf', NULL, 'hired', 65, NULL, NULL, NULL, 0, '2025-10-14 06:54:17', 0, '', '009394433', 'Steve', 'College', 4, 'Order Processor', 'Banawe', '2025-10-14', NULL, NULL, NULL, '2025-10-14 20:54:35'),
+(35, 'Dani Meniscola', 'danilovergara610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-145726-506884b4-Dani-Meniscola.pdf', NULL, '', NULL, NULL, NULL, NULL, 0, '2025-10-14 06:57:26', 1, '', '0943243242', 'Martan', 'College Graduate', 3, 'Store Manager', 'Banawe', '2025-10-15', NULL, NULL, NULL, '2025-10-14 20:57:39'),
+(36, 'Dans Vergara', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-145959-682c84cc-Dans-Vergara.pdf', NULL, 'hired', 87, NULL, NULL, NULL, 0, '2025-10-14 06:59:59', 0, '', '0934242342', 'Steve', 'College', 3, 'Order Processor', 'Banawe', '2025-10-15', NULL, NULL, NULL, '2025-10-14 21:00:14'),
+(37, 'Veto Santos', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-152106-7b92613c-Veto-Santos.pdf', NULL, 'hired', 76, NULL, NULL, NULL, 0, '2025-10-14 07:21:06', 0, '', '09342432432', 'Martan Street', 'High school', 3, 'Order Processor', 'Banawe', '2025-10-14', NULL, NULL, NULL, '2025-10-14 21:21:22'),
+(38, 'Breach Gomez', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-152348-52dde52b-Breach-Gomez.pdf', NULL, 'hired', 98, NULL, NULL, NULL, 0, '2025-10-14 07:23:48', 0, '', '0943243242', 'Steve', 'College', 3, 'Merchandiser / Promodiser', 'Banawe', '2025-10-15', NULL, NULL, NULL, '2025-10-14 21:24:22'),
+(39, 'Lancelot Maliper', 'danilovergarajr610@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251014-154517-3953b4df-Lancelot-Maliper.pdf', NULL, 'hired', 86, NULL, NULL, NULL, 0, '2025-10-14 07:45:17', 0, '', '0943242342', 'Martan', 'College', 3, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-14', NULL, '528da4383e5b9d62349c2f1a7260e6190867a232be825cf3', '2025-10-21 17:39:34', '2025-10-14 23:39:34'),
+(40, 'Cassandra Lopez', 'vergara.136541132229@depedqc.ph', NULL, NULL, 'uploads/resumes/cv-20251014-173328-3319625b-Cassandra-Lopez.pdf', NULL, 'hired', 78, NULL, NULL, NULL, 0, '2025-10-14 09:33:28', 0, '', '0943243242', 'Metom', 'College', 3, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-14', NULL, '697eeb0d408a45cb2c45aaf2a7d258fe', '2025-10-21 17:34:01', '2025-10-14 23:34:01'),
+(41, 'Klein De Jesus', 'vergara.136541132229@depedqc.ph', NULL, NULL, 'uploads/resumes/cv-20251014-193207-ab6cca47-Klein-De-Jesus.pdf', NULL, 'hired', 78, NULL, NULL, NULL, 0, '2025-10-14 11:32:07', 0, '', '09432432432', 'Sanidgan', 'College', 3, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-16', NULL, '32ed8b1ece4caa45e60dfb0a9afe8891', '2025-10-21 19:32:30', '2025-10-15 01:32:30'),
+(42, 'Kyle Kuzma', 'danv66215@gmail.com', NULL, NULL, 'uploads/resumes/cv-20251017-205347-075ef194-Kyle-Kuzma.pdf', NULL, 'hired', 66, NULL, NULL, NULL, 0, '2025-10-17 12:53:47', 0, '', '094324242', 'dsfsefs', 'College', 2, 'Inventory Clerk / Stockman', 'Banawe', '2025-10-24', NULL, 'b05fc23680c715e0c1d3ee4229c2555d', '2025-10-24 20:54:07', '2025-10-18 02:54:07');
 
 -- --------------------------------------------------------
 
@@ -1705,7 +1714,182 @@ INSERT INTO `audit_logs` (`id`, `actor_id`, `action`, `entity`, `entity_id`, `be
 (1595, NULL, 'add', NULL, '548', NULL, NULL, '2025-10-11 22:33:58'),
 (1596, NULL, 'archive', 'applicant', '9', NULL, NULL, '2025-10-11 16:35:02'),
 (1597, NULL, 'unarchive', 'applicant', '9', NULL, NULL, '2025-10-11 22:35:06'),
-(1598, NULL, 'notify', 'applicant', '9', NULL, NULL, '2025-10-11 16:35:20');
+(1598, NULL, 'notify', 'applicant', '9', NULL, NULL, '2025-10-11 16:35:20'),
+(1599, NULL, 'toggle_shortlist', 'applicant', '17', NULL, NULL, '2025-10-14 06:00:18'),
+(1600, NULL, 'notify', 'applicant', '9', NULL, NULL, '2025-10-14 06:16:06'),
+(1601, NULL, 'update_due', NULL, '284', NULL, NULL, '2025-10-14 12:16:47'),
+(1602, NULL, 'delete', NULL, '284', NULL, NULL, '2025-10-14 12:16:49'),
+(1603, NULL, 'delete', NULL, '285', NULL, NULL, '2025-10-14 12:16:52'),
+(1604, NULL, 'delete', NULL, '286', NULL, NULL, '2025-10-14 12:16:53'),
+(1605, NULL, 'delete', NULL, '287', NULL, NULL, '2025-10-14 12:16:55'),
+(1606, NULL, 'delete', NULL, '288', NULL, NULL, '2025-10-14 12:16:57'),
+(1607, NULL, 'delete', NULL, '289', NULL, NULL, '2025-10-14 12:16:59'),
+(1608, NULL, 'add', NULL, '549', NULL, NULL, '2025-10-14 12:17:21'),
+(1609, NULL, 'add', NULL, '550', NULL, NULL, '2025-10-14 12:17:21'),
+(1610, NULL, 'add', NULL, '551', NULL, NULL, '2025-10-14 12:17:21'),
+(1611, NULL, 'add', NULL, '552', NULL, NULL, '2025-10-14 12:17:22'),
+(1612, NULL, 'add', NULL, '553', NULL, NULL, '2025-10-14 12:17:22'),
+(1613, NULL, 'add', NULL, '554', NULL, NULL, '2025-10-14 12:17:22'),
+(1614, NULL, 'add', NULL, '555', NULL, NULL, '2025-10-14 12:17:22'),
+(1615, NULL, 'add', NULL, '556', NULL, NULL, '2025-10-14 12:17:22'),
+(1616, NULL, 'add', NULL, '557', NULL, NULL, '2025-10-14 12:17:22'),
+(1617, NULL, 'add', NULL, '558', NULL, NULL, '2025-10-14 12:17:22'),
+(1618, NULL, 'add', NULL, '559', NULL, NULL, '2025-10-14 12:17:22'),
+(1619, NULL, 'add', NULL, '560', NULL, NULL, '2025-10-14 12:17:22'),
+(1620, NULL, 'archive', 'applicant', '32', NULL, NULL, '2025-10-14 06:39:15'),
+(1621, NULL, 'unarchive', 'applicant', '32', NULL, NULL, '2025-10-14 12:39:21'),
+(1622, NULL, 'public_apply', 'applicant', '33', NULL, NULL, '2025-10-14 06:41:10'),
+(1623, NULL, 'submit_score', 'applicant', '33', NULL, NULL, '2025-10-14 06:41:33'),
+(1624, NULL, 'submit_score', 'applicant', '9', NULL, NULL, '2025-10-14 06:42:00'),
+(1625, NULL, 'set_status', 'applicant', '9', NULL, NULL, '2025-10-14 06:42:00'),
+(1626, NULL, 'submit_score', 'applicant', '9', NULL, NULL, '2025-10-14 06:42:07'),
+(1627, NULL, 'submit_score', 'applicant', '13', NULL, NULL, '2025-10-14 06:42:58'),
+(1628, NULL, 'set_status', 'applicant', '13', NULL, NULL, '2025-10-14 06:42:58'),
+(1629, NULL, 'submit_score', 'applicant', '17', NULL, NULL, '2025-10-14 06:46:18'),
+(1630, NULL, 'submit_score', 'applicant', '14', NULL, NULL, '2025-10-14 06:47:23'),
+(1631, NULL, 'set_status', 'applicant', '14', NULL, NULL, '2025-10-14 06:47:23'),
+(1632, NULL, 'submit_score', 'applicant', '32', NULL, NULL, '2025-10-14 06:47:41'),
+(1633, NULL, 'public_apply', 'applicant', '34', NULL, NULL, '2025-10-14 06:54:17'),
+(1634, NULL, 'submit_score', 'applicant', '34', NULL, NULL, '2025-10-14 06:54:34'),
+(1635, NULL, 'set_status', 'applicant', '34', NULL, NULL, '2025-10-14 06:54:35'),
+(1636, NULL, 'public_apply', 'applicant', '35', NULL, NULL, '2025-10-14 06:57:26'),
+(1637, NULL, 'public_apply', 'applicant', '36', NULL, NULL, '2025-10-14 06:59:59'),
+(1638, NULL, 'submit_score', 'applicant', '36', NULL, NULL, '2025-10-14 07:00:14'),
+(1639, NULL, 'set_status', 'applicant', '36', NULL, NULL, '2025-10-14 07:00:14'),
+(1640, NULL, 'public_apply', 'applicant', '37', NULL, NULL, '2025-10-14 07:21:06'),
+(1641, NULL, 'submit_score', 'applicant', '37', NULL, NULL, '2025-10-14 07:21:22'),
+(1642, NULL, 'set_status', 'applicant', '37', NULL, NULL, '2025-10-14 07:21:22'),
+(1643, NULL, 'public_apply', 'applicant', '38', NULL, NULL, '2025-10-14 07:23:48'),
+(1644, NULL, 'submit_score', 'applicant', '38', NULL, NULL, '2025-10-14 07:24:22'),
+(1645, NULL, 'set_status', 'applicant', '38', NULL, NULL, '2025-10-14 07:24:22'),
+(1646, NULL, 'public_apply', 'applicant', '39', NULL, NULL, '2025-10-14 07:45:17'),
+(1647, NULL, 'submit_score', 'applicant', '39', NULL, NULL, '2025-10-14 07:45:49'),
+(1648, NULL, 'set_status', 'applicant', '39', NULL, NULL, '2025-10-14 07:45:52'),
+(1649, NULL, 'public_apply', 'applicant', '40', NULL, NULL, '2025-10-14 09:33:28'),
+(1650, NULL, 'submit_score', 'applicant', '40', NULL, NULL, '2025-10-14 09:34:01'),
+(1651, NULL, 'set_status', 'applicant', '40', NULL, NULL, '2025-10-14 09:34:05'),
+(1652, NULL, 'add', NULL, '561', NULL, NULL, '2025-10-14 15:35:29'),
+(1653, NULL, 'add', NULL, '562', NULL, NULL, '2025-10-14 15:35:29'),
+(1654, NULL, 'add', NULL, '563', NULL, NULL, '2025-10-14 15:35:29'),
+(1655, NULL, 'add', NULL, '564', NULL, NULL, '2025-10-14 15:35:29'),
+(1656, NULL, 'add', NULL, '565', NULL, NULL, '2025-10-14 15:35:29'),
+(1657, NULL, 'add', NULL, '566', NULL, NULL, '2025-10-14 15:35:29'),
+(1658, NULL, 'add', NULL, '567', NULL, NULL, '2025-10-14 15:35:29'),
+(1659, NULL, 'add', NULL, '568', NULL, NULL, '2025-10-14 15:35:29'),
+(1660, NULL, 'add', NULL, '569', NULL, NULL, '2025-10-14 15:35:30'),
+(1661, NULL, 'add', NULL, '570', NULL, NULL, '2025-10-14 15:35:30'),
+(1662, NULL, 'add', NULL, '571', NULL, NULL, '2025-10-14 15:35:30'),
+(1663, NULL, 'add', NULL, '572', NULL, NULL, '2025-10-14 15:35:30'),
+(1664, NULL, 'add', NULL, '573', NULL, NULL, '2025-10-14 15:35:50'),
+(1665, NULL, 'add', NULL, '574', NULL, NULL, '2025-10-14 15:35:50'),
+(1666, NULL, 'add', NULL, '575', NULL, NULL, '2025-10-14 15:35:50'),
+(1667, NULL, 'add', NULL, '576', NULL, NULL, '2025-10-14 15:35:50'),
+(1668, NULL, 'add', NULL, '577', NULL, NULL, '2025-10-14 15:35:50'),
+(1669, NULL, 'add', NULL, '578', NULL, NULL, '2025-10-14 15:35:50'),
+(1670, NULL, 'add', NULL, '579', NULL, NULL, '2025-10-14 15:35:50'),
+(1671, NULL, 'add', NULL, '580', NULL, NULL, '2025-10-14 15:35:50'),
+(1672, NULL, 'add', NULL, '581', NULL, NULL, '2025-10-14 15:35:50'),
+(1673, NULL, 'add', NULL, '582', NULL, NULL, '2025-10-14 15:35:50'),
+(1674, NULL, 'add', NULL, '583', NULL, NULL, '2025-10-14 15:35:50'),
+(1675, NULL, 'add', NULL, '584', NULL, NULL, '2025-10-14 15:35:51'),
+(1676, NULL, 'add', NULL, '585', NULL, NULL, '2025-10-14 15:36:21'),
+(1677, NULL, 'add', NULL, '586', NULL, NULL, '2025-10-14 15:36:21'),
+(1678, NULL, 'add', NULL, '587', NULL, NULL, '2025-10-14 15:36:21'),
+(1679, NULL, 'add', NULL, '588', NULL, NULL, '2025-10-14 15:36:21'),
+(1680, NULL, 'add', NULL, '589', NULL, NULL, '2025-10-14 15:36:21'),
+(1681, NULL, 'add', NULL, '590', NULL, NULL, '2025-10-14 15:36:21'),
+(1682, NULL, 'add', NULL, '591', NULL, NULL, '2025-10-14 15:36:21'),
+(1683, NULL, 'add', NULL, '592', NULL, NULL, '2025-10-14 15:36:21'),
+(1684, NULL, 'add', NULL, '593', NULL, NULL, '2025-10-14 15:36:21'),
+(1685, NULL, 'add', NULL, '594', NULL, NULL, '2025-10-14 15:36:21'),
+(1686, NULL, 'add', NULL, '595', NULL, NULL, '2025-10-14 15:36:21'),
+(1687, NULL, 'add', NULL, '596', NULL, NULL, '2025-10-14 15:36:21'),
+(1688, NULL, 'add', NULL, '597', NULL, NULL, '2025-10-14 15:36:21'),
+(1689, NULL, 'delete', NULL, '561', NULL, NULL, '2025-10-14 15:36:45'),
+(1690, NULL, 'delete', NULL, '562', NULL, NULL, '2025-10-14 15:36:46'),
+(1691, NULL, 'delete', NULL, '563', NULL, NULL, '2025-10-14 15:36:48'),
+(1692, NULL, 'delete', NULL, '564', NULL, NULL, '2025-10-14 15:36:50'),
+(1693, NULL, 'delete', NULL, '565', NULL, NULL, '2025-10-14 15:36:51'),
+(1694, NULL, 'delete', NULL, '566', NULL, NULL, '2025-10-14 15:36:53'),
+(1695, NULL, 'delete', NULL, '567', NULL, NULL, '2025-10-14 15:36:54'),
+(1696, NULL, 'delete', NULL, '568', NULL, NULL, '2025-10-14 15:36:56'),
+(1697, NULL, 'delete', NULL, '569', NULL, NULL, '2025-10-14 15:36:57'),
+(1698, NULL, 'delete', NULL, '570', NULL, NULL, '2025-10-14 15:37:00'),
+(1699, NULL, 'delete', NULL, '571', NULL, NULL, '2025-10-14 15:37:01'),
+(1700, NULL, 'delete', NULL, '572', NULL, NULL, '2025-10-14 15:37:02'),
+(1701, NULL, 'delete', NULL, '537', NULL, NULL, '2025-10-14 15:37:09'),
+(1702, NULL, 'delete', NULL, '538', NULL, NULL, '2025-10-14 15:37:11'),
+(1703, NULL, 'delete', NULL, '539', NULL, NULL, '2025-10-14 15:37:13'),
+(1704, NULL, 'delete', NULL, '540', NULL, NULL, '2025-10-14 15:37:14'),
+(1705, NULL, 'delete', NULL, '541', NULL, NULL, '2025-10-14 15:37:16'),
+(1706, NULL, 'delete', NULL, '542', NULL, NULL, '2025-10-14 15:37:17'),
+(1707, NULL, 'delete', NULL, '543', NULL, NULL, '2025-10-14 15:37:19'),
+(1708, NULL, 'delete', NULL, '544', NULL, NULL, '2025-10-14 15:37:21'),
+(1709, NULL, 'update_due', NULL, '545', NULL, NULL, '2025-10-14 15:37:24'),
+(1710, NULL, 'update_due', NULL, '545', NULL, NULL, '2025-10-14 15:37:33'),
+(1711, NULL, 'delete', NULL, '545', NULL, NULL, '2025-10-14 15:37:36'),
+(1712, NULL, 'delete', NULL, '546', NULL, NULL, '2025-10-14 15:37:37'),
+(1713, NULL, 'delete', NULL, '547', NULL, NULL, '2025-10-14 15:37:39'),
+(1714, NULL, 'delete', NULL, '548', NULL, NULL, '2025-10-14 15:37:40'),
+(1715, NULL, 'delete', NULL, '573', NULL, NULL, '2025-10-14 15:37:53'),
+(1716, NULL, 'delete', NULL, '574', NULL, NULL, '2025-10-14 15:37:55'),
+(1717, NULL, 'delete', NULL, '575', NULL, NULL, '2025-10-14 15:37:57'),
+(1718, NULL, 'delete', NULL, '576', NULL, NULL, '2025-10-14 15:37:59'),
+(1719, NULL, 'delete', NULL, '577', NULL, NULL, '2025-10-14 15:38:00'),
+(1720, NULL, 'delete', NULL, '578', NULL, NULL, '2025-10-14 15:38:02'),
+(1721, NULL, 'delete', NULL, '579', NULL, NULL, '2025-10-14 15:38:03'),
+(1722, NULL, 'delete', NULL, '580', NULL, NULL, '2025-10-14 15:38:05'),
+(1723, NULL, 'delete', NULL, '581', NULL, NULL, '2025-10-14 15:38:07'),
+(1724, NULL, 'delete', NULL, '582', NULL, NULL, '2025-10-14 15:38:09'),
+(1725, NULL, 'delete', NULL, '583', NULL, NULL, '2025-10-14 15:38:10'),
+(1726, NULL, 'delete', NULL, '584', NULL, NULL, '2025-10-14 15:38:11'),
+(1727, NULL, 'delete', NULL, '585', NULL, NULL, '2025-10-14 15:38:25'),
+(1728, NULL, 'delete', NULL, '586', NULL, NULL, '2025-10-14 15:38:27'),
+(1729, NULL, 'delete', NULL, '587', NULL, NULL, '2025-10-14 15:38:30'),
+(1730, NULL, 'delete', NULL, '588', NULL, NULL, '2025-10-14 15:38:35'),
+(1731, NULL, 'delete', NULL, '589', NULL, NULL, '2025-10-14 15:38:38'),
+(1732, NULL, 'delete', NULL, '590', NULL, NULL, '2025-10-14 15:38:42'),
+(1733, NULL, 'delete', NULL, '591', NULL, NULL, '2025-10-14 15:38:46'),
+(1734, NULL, 'delete', NULL, '592', NULL, NULL, '2025-10-14 15:38:48'),
+(1735, NULL, 'delete', NULL, '593', NULL, NULL, '2025-10-14 15:38:50'),
+(1736, NULL, 'delete', NULL, '594', NULL, NULL, '2025-10-14 15:38:51'),
+(1737, NULL, 'delete', NULL, '595', NULL, NULL, '2025-10-14 15:38:53'),
+(1738, NULL, 'delete', NULL, '596', NULL, NULL, '2025-10-14 15:38:55'),
+(1739, NULL, 'delete', NULL, '597', NULL, NULL, '2025-10-14 15:38:56'),
+(1740, NULL, 'public_apply', 'applicant', '41', NULL, NULL, '2025-10-14 11:32:07'),
+(1741, NULL, 'submit_score', 'applicant', '41', NULL, NULL, '2025-10-14 11:32:30'),
+(1742, NULL, 'set_status', 'applicant', '41', NULL, NULL, '2025-10-14 11:32:33'),
+(1743, NULL, 'add', NULL, '598', NULL, NULL, '2025-10-14 17:34:39'),
+(1744, NULL, 'add', NULL, '599', NULL, NULL, '2025-10-14 17:34:39'),
+(1745, NULL, 'add', NULL, '600', NULL, NULL, '2025-10-14 17:34:39'),
+(1746, NULL, 'add', NULL, '601', NULL, NULL, '2025-10-14 17:34:39'),
+(1747, NULL, 'add', NULL, '602', NULL, NULL, '2025-10-14 17:34:39'),
+(1748, NULL, 'add', NULL, '603', NULL, NULL, '2025-10-14 17:34:39'),
+(1749, NULL, 'add', NULL, '604', NULL, NULL, '2025-10-14 17:34:39'),
+(1750, NULL, 'add', NULL, '605', NULL, NULL, '2025-10-14 17:34:39'),
+(1751, NULL, 'add', NULL, '606', NULL, NULL, '2025-10-14 17:34:39'),
+(1752, NULL, 'add', NULL, '607', NULL, NULL, '2025-10-14 17:34:39'),
+(1753, NULL, 'add', NULL, '608', NULL, NULL, '2025-10-14 17:34:39'),
+(1754, NULL, 'add', NULL, '609', NULL, NULL, '2025-10-14 17:34:39'),
+(1755, NULL, 'delete', NULL, '598', NULL, NULL, '2025-10-14 17:34:44'),
+(1756, NULL, 'delete', NULL, '599', NULL, NULL, '2025-10-14 17:34:46'),
+(1757, NULL, 'delete', NULL, '600', NULL, NULL, '2025-10-14 17:34:48'),
+(1758, NULL, 'delete', NULL, '601', NULL, NULL, '2025-10-14 17:34:50'),
+(1759, NULL, 'delete', NULL, '602', NULL, NULL, '2025-10-14 17:34:51'),
+(1760, NULL, 'delete', NULL, '603', NULL, NULL, '2025-10-14 17:34:52'),
+(1761, NULL, 'delete', NULL, '604', NULL, NULL, '2025-10-14 17:34:53'),
+(1762, NULL, 'delete', NULL, '605', NULL, NULL, '2025-10-14 17:34:55'),
+(1763, NULL, 'delete', NULL, '606', NULL, NULL, '2025-10-14 17:34:56'),
+(1764, NULL, 'delete', NULL, '607', NULL, NULL, '2025-10-14 17:34:57'),
+(1765, NULL, 'delete', NULL, '608', NULL, NULL, '2025-10-14 17:34:58'),
+(1766, NULL, 'delete', NULL, '609', NULL, NULL, '2025-10-14 17:34:59'),
+(1767, NULL, 'archive', 'applicant', '19', NULL, NULL, '2025-10-17 08:59:30'),
+(1768, NULL, 'unarchive', 'applicant', '19', NULL, NULL, '2025-10-17 14:59:35'),
+(1769, NULL, 'submit_score', 'applicant', '19', NULL, NULL, '2025-10-17 09:00:22'),
+(1770, NULL, 'set_status', 'applicant', '19', NULL, NULL, '2025-10-17 09:00:26'),
+(1771, NULL, 'public_apply', 'applicant', '42', NULL, NULL, '2025-10-17 12:53:47'),
+(1772, NULL, 'submit_score', 'applicant', '42', NULL, NULL, '2025-10-17 12:54:07'),
+(1773, NULL, 'set_status', 'applicant', '42', NULL, NULL, '2025-10-17 12:54:11');
 
 -- --------------------------------------------------------
 
@@ -1746,7 +1930,7 @@ INSERT INTO `employees` (`id`, `user_id`, `applicant_id`, `emp_code`, `date_hire
 (8, NULL, 15, NULL, '2025-10-11', 'regular', NULL, NULL, 'Mellisa Co', 'Store Part Timer', 'Operations', 'Main Store', '2025-10-10 00:13:32', NULL, 0),
 (11, NULL, 12, NULL, '2025-10-11', 'regular', NULL, NULL, 'Mark Juan', 'Store Part Timer', 'Operations', 'Main Store', '2025-10-10 00:13:34', NULL, 0),
 (12, NULL, 13, NULL, '2025-10-09', 'regular', NULL, NULL, 'Alex Santos', 'Store Part Timer', 'Operations', 'Banawe', '2025-10-12 06:45:57', NULL, 0),
-(13, NULL, 19, NULL, '2025-10-09', 'regular', NULL, NULL, 'Jake Luigi', 'Store Part Timer', 'Operations', 'Banawe', '2025-10-11 03:06:07', NULL, 1),
+(13, NULL, 19, NULL, '2025-10-17', '', NULL, NULL, 'Jake Luigi', 'Store Part Timer', 'Operations', 'Banawe', '2025-10-17 23:00:22', NULL, 1),
 (14, NULL, 20, NULL, '2025-10-09', 'regular', NULL, NULL, 'Hans San jose', 'Deputy Store Manager', 'Operations', 'Main Store', '2025-10-12 06:45:46', NULL, 1),
 (15, NULL, 22, NULL, '2025-10-11', 'regular', NULL, NULL, 'Kate Velasco', 'Cashier', 'Operations', 'Main Store', '2025-10-11 19:29:15', NULL, 1),
 (16, NULL, 23, NULL, '2025-10-11', 'regular', NULL, NULL, 'Juan De Jesus', 'Merchandiser / Promodiser', 'Operations', 'Main Store', '2025-10-11 04:51:06', NULL, 0),
@@ -1757,7 +1941,18 @@ INSERT INTO `employees` (`id`, `user_id`, `applicant_id`, `emp_code`, `date_hire
 (22, NULL, 26, NULL, '2025-10-11', 'regular', NULL, NULL, 'Dan Vergara', 'Order Processor', 'Operations', 'Main Store', '2025-10-11 05:26:25', NULL, 0),
 (23, NULL, 27, NULL, '2025-10-10', 'regular', NULL, NULL, 'Kyle Varga', 'Store Manager', 'Operations', 'Main Store', NULL, NULL, 0),
 (24, NULL, NULL, NULL, '2025-10-10', 'regular', NULL, NULL, 'Robert Gonzales', 'Order Processor', 'Operations', 'Main Store', '2025-10-11 06:21:07', NULL, 1),
-(29, NULL, NULL, NULL, '2025-10-12', '', NULL, NULL, 'Jay Gomez', 'Store Manager', 'Operation', 'Main Store', '2025-10-12 07:03:08', NULL, 0);
+(29, NULL, NULL, NULL, '2025-10-12', 'regular', NULL, NULL, 'Jay Gomez', 'Store Manager', 'Operation', 'Main Store', '2025-10-14 20:00:43', NULL, 0),
+(30, NULL, NULL, NULL, '2025-10-12', '', NULL, NULL, 'dwadsa', 'dwasda', 'dwasa', 'Main Store', '2025-10-12 07:40:42', NULL, 1),
+(31, NULL, NULL, NULL, '2025-10-12', '', NULL, NULL, 'sdawda', 'sdawdsa', 'sdawd', 'Main Store', '2025-10-12 07:40:40', NULL, 1),
+(32, NULL, NULL, NULL, '2025-10-12', '', NULL, NULL, 'awdsa', 'dwasa', 'dwads', 'Main Store', '2025-10-12 07:40:37', NULL, 1),
+(33, NULL, 34, NULL, '2025-10-14', 'regular', NULL, NULL, 'Chamber Juan', 'Order Processor', 'Operations', 'Main Store', '2025-10-14 20:55:26', NULL, 0),
+(34, NULL, 36, NULL, '2025-10-14', 'regular', NULL, NULL, 'Dans Vergara', 'Order Processor', 'Operations', 'Main Store', '2025-10-14 21:50:41', NULL, 0),
+(35, NULL, 37, NULL, '2025-10-14', 'regular', NULL, NULL, 'Veto Santos', 'Order Processor', 'Operations', 'Main Store', '2025-10-14 21:50:48', NULL, 0),
+(36, NULL, 38, NULL, '2025-10-14', 'regular', NULL, NULL, 'Breach Gomez', 'Merchandiser / Promodiser', 'Operations', 'Main Store', '2025-10-14 21:50:53', NULL, 0),
+(37, NULL, 39, NULL, '2025-10-14', 'probation', NULL, NULL, 'Lancelot Maliper', 'Inventory Clerk / Stockman', 'Operations', 'Main Store', '2025-10-14 21:50:58', NULL, 0),
+(38, NULL, 40, NULL, '2025-10-14', '', NULL, NULL, 'Cassandra Lopez', 'Inventory Clerk / Stockman', 'Operations', 'Main Store', '2025-10-14 23:34:01', NULL, 0),
+(39, NULL, 41, NULL, '2025-10-14', '', NULL, NULL, 'Klein De Jesus', 'Inventory Clerk / Stockman', 'Operations', 'Main Store', '2025-10-15 01:32:30', NULL, 0),
+(40, NULL, 42, NULL, '2025-10-17', '', NULL, NULL, 'Kyle Kuzma', 'Inventory Clerk / Stockman', 'Operations', 'Main Store', '2025-10-18 02:54:07', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1791,7 +1986,8 @@ INSERT INTO `evaluations` (`id`, `employee_id`, `period`, `due_date`, `status`, 
 (12, 19, 'Initial 30 Day', '2025-11-07', 'completed', '', NULL, NULL, NULL, NULL, '2025-10-10 07:35:04', '2025-10-11 18:19:40'),
 (13, 11, 'Mid-Year', '2025-10-17', 'completed', '', NULL, NULL, 3.00, NULL, '2025-10-10 07:35:18', '2025-10-10 21:58:31'),
 (14, 22, 'Initial 60 Day', '2025-10-10', 'completed', '', NULL, NULL, 4.00, NULL, '2025-10-10 13:57:47', '2025-10-10 21:58:06'),
-(15, 22, 'Initial 30 Day', '2025-10-06', 'completed', '', NULL, NULL, NULL, NULL, '2025-10-11 01:07:23', '2025-10-11 18:19:09');
+(15, 22, 'Initial 30 Day', '2025-10-06', 'completed', '', NULL, NULL, NULL, NULL, '2025-10-11 01:07:23', '2025-10-11 18:19:09'),
+(16, 12, 'Initial 30 Day', '2025-10-11', 'pending', NULL, NULL, NULL, NULL, NULL, '2025-10-11 23:33:25', '2025-10-12 07:33:25');
 
 -- --------------------------------------------------------
 
@@ -1830,14 +2026,14 @@ CREATE TABLE `eval_forms` (
 --
 
 INSERT INTO `eval_forms` (`id`, `applicant_id`, `template`, `status`, `score`, `remarks`, `created_at`, `communication`, `experience`, `culture_fit`) VALUES
-(1, 13, '', 'Pending', 0, NULL, '2025-10-12 05:30:40', NULL, NULL, NULL),
-(2, 17, '', 'Pending', 0, NULL, '2025-10-11 08:05:04', NULL, NULL, NULL),
+(1, 13, '', 'Pending', 32, NULL, '2025-10-14 20:42:58', NULL, NULL, NULL),
+(2, 17, '', 'Pending', 87, NULL, '2025-10-14 20:46:18', NULL, NULL, NULL),
 (3, 12, '', 'Pending', 0, NULL, '2025-10-11 04:45:39', NULL, NULL, NULL),
-(4, 9, '', 'Pending', 43, NULL, '2025-10-10 14:31:21', NULL, NULL, NULL),
-(5, 14, '', 'Pending', 0, NULL, '2025-10-11 09:01:00', NULL, NULL, NULL),
+(4, 9, '', 'Pending', 0, NULL, '2025-10-14 20:42:07', NULL, NULL, NULL),
+(5, 14, '', 'Pending', 87, NULL, '2025-10-14 20:47:22', NULL, NULL, NULL),
 (6, 15, '', 'Pending', 0, NULL, '2025-10-10 22:07:29', NULL, NULL, NULL),
 (7, 16, '', 'Pending', 0, NULL, '2025-10-11 07:31:28', NULL, NULL, NULL),
-(8, 19, '', 'Pending', 0, NULL, '2025-10-12 05:12:40', NULL, NULL, NULL),
+(8, 19, '', 'Pending', 78, NULL, '2025-10-17 23:00:22', NULL, NULL, NULL),
 (9, 20, '', 'Pending', 0, NULL, '2025-10-11 05:53:17', NULL, NULL, NULL),
 (10, 21, '', 'Pending', 56, NULL, '2025-10-10 05:07:32', NULL, NULL, NULL),
 (11, 22, '', 'Pending', 56, NULL, '2025-10-10 04:36:10', NULL, NULL, NULL),
@@ -1845,7 +2041,17 @@ INSERT INTO `eval_forms` (`id`, `applicant_id`, `template`, `status`, `score`, `
 (13, 23, '', 'Pending', 55, NULL, '2025-10-10 04:56:20', NULL, NULL, NULL),
 (14, 10, '', 'Pending', 67, NULL, '2025-10-10 05:12:15', NULL, NULL, NULL),
 (15, 24, '', 'Pending', 65, NULL, '2025-10-10 14:31:49', NULL, NULL, NULL),
-(16, 25, '', 'Pending', 0, NULL, '2025-10-10 18:15:12', NULL, NULL, NULL);
+(16, 25, '', 'Pending', 0, NULL, '2025-10-10 18:15:12', NULL, NULL, NULL),
+(17, 33, '', 'Pending', 89, NULL, '2025-10-14 20:41:33', NULL, NULL, NULL),
+(18, 32, '', 'Pending', 78, NULL, '2025-10-14 20:47:41', NULL, NULL, NULL),
+(19, 34, '', 'Pending', 65, NULL, '2025-10-14 20:54:34', NULL, NULL, NULL),
+(20, 36, '', 'Pending', 87, NULL, '2025-10-14 21:00:14', NULL, NULL, NULL),
+(21, 37, '', 'Pending', 76, NULL, '2025-10-14 21:21:22', NULL, NULL, NULL),
+(22, 38, '', 'Pending', 98, NULL, '2025-10-14 21:24:22', NULL, NULL, NULL),
+(23, 39, '', 'Pending', 86, NULL, '2025-10-14 21:45:49', NULL, NULL, NULL),
+(24, 40, '', 'Pending', 78, NULL, '2025-10-14 23:34:01', NULL, NULL, NULL),
+(25, 41, '', 'Pending', 78, NULL, '2025-10-15 01:32:30', NULL, NULL, NULL),
+(26, 42, '', 'Pending', 66, NULL, '2025-10-18 02:54:07', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1872,7 +2078,10 @@ INSERT INTO `interviews` (`id`, `applicant_id`, `req_no`, `i_date`, `start_time`
 (1, 9, NULL, '0000-00-00', '01:07:00', '00:00:00', '', '2025-10-09 19:07:27'),
 (2, 24, NULL, '0000-00-00', '14:16:00', '00:00:00', '', '2025-10-10 08:16:19'),
 (3, 25, NULL, '0000-00-00', '18:13:00', '00:00:00', '', '2025-10-10 12:13:37'),
-(4, 26, NULL, '0000-00-00', '21:51:00', '00:00:00', '', '2025-10-10 15:51:28');
+(4, 26, NULL, '0000-00-00', '21:51:00', '00:00:00', '', '2025-10-10 15:51:28'),
+(5, 9, NULL, '0000-00-00', '00:00:00', '00:00:00', '', '2025-10-14 20:10:47'),
+(6, 9, NULL, '0000-00-00', '00:00:00', '00:00:00', '', '2025-10-14 20:12:19'),
+(7, 9, NULL, '0000-00-00', '00:00:00', '00:00:00', '', '2025-10-14 20:15:21');
 
 -- --------------------------------------------------------
 
@@ -1983,7 +2192,17 @@ INSERT INTO `newhire_uploads` (`id`, `applicant_id`, `file_key`, `file_path`, `u
 (59, 29, 'tin', 'uploads/newhire/29/tin_20251011_221756.jpg', '2025-10-12 04:17:56'),
 (60, 29, 'photo2x2', 'uploads/newhire/29/photo2x2_20251011_221757.jpg', '2025-10-12 04:17:57'),
 (61, 29, 'diploma', 'uploads/newhire/29/diploma_20251011_221757.jpg', '2025-10-12 04:17:57'),
-(62, 32, 'gov_id1', 'uploads/newhire/32/gov_id1_20251012_003715.jpg', '2025-10-12 06:37:15');
+(62, 32, 'gov_id1', 'uploads/newhire/32/gov_id1_20251012_003715.jpg', '2025-10-12 06:37:15'),
+(63, 39, 'gov_id1', 'uploads/newhire/39/gov_id1_20251014_172441.png', '2025-10-14 23:24:41'),
+(64, 39, 'gov_id2', 'uploads/newhire/39/gov_id2_20251014_172441.png', '2025-10-14 23:24:41'),
+(65, 39, 'sss', 'uploads/newhire/39/sss_20251014_172441.pdf', '2025-10-14 23:24:41'),
+(66, 39, 'pagibig', 'uploads/newhire/39/pagibig_20251014_172441.pdf', '2025-10-14 23:24:41'),
+(67, 39, 'philhealth', 'uploads/newhire/39/philhealth_20251014_172441.pdf', '2025-10-14 23:24:41'),
+(68, 39, 'tin', 'uploads/newhire/39/tin_20251014_172441.pdf', '2025-10-14 23:24:41'),
+(69, 39, 'nbi', 'uploads/newhire/39/nbi_20251014_172441.pdf', '2025-10-14 23:24:41'),
+(70, 39, 'photo2x2', 'uploads/newhire/39/photo2x2_20251014_172441.png', '2025-10-14 23:24:41'),
+(79, 41, 'gov_id1', 'uploads/newhire/41/gov_id1_20251014_193349.png', '2025-10-15 01:33:49'),
+(80, 41, 'gov_id2', 'uploads/newhire/41/gov_id2_20251014_193349.jpeg', '2025-10-15 01:33:49');
 
 -- --------------------------------------------------------
 
@@ -2070,7 +2289,17 @@ INSERT INTO `notifications` (`id`, `applicant_id`, `type`, `payload`, `sent_at`,
 (55, 31, 'email', NULL, '2025-10-11 22:23:45', 0, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi ,\n\nCongratulations! Your application status is now Hired.\n\nPlease complete your new-hire requirements using this secure link:\nhttp://localhost/hr1_Merchflow/api/../newhire.php?t=4f1a9611ddd050c49fbf5be08ccc415544470c158ec380c5\n\nThis link will expire in 7 days.\n\nThank you,\nHR1 Nextgenmms – HR Department', 'hired', 'Hired', 1, NULL, '2025-10-11 22:23:45'),
 (56, 31, 'email', NULL, '2025-10-11 22:26:11', 0, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi ,\n\nCongratulations! Your application status is now Hired.\n\nPlease complete your new-hire requirements using this secure link:\nhttp://localhost/hr1_Merchflow/api/../newhire.php?t=b0680ba4ea5c44909071a3b228d8c8b5bd3d20cda7658424\n\nThis link will expire in 7 days.\n\nThank you,\nHR1 Nextgenmms – HR Department', 'hired', 'Hired', 1, NULL, '2025-10-11 22:26:11'),
 (57, 32, 'email', NULL, '2025-10-11 22:33:24', 0, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi ,\n\nCongratulations! Your application status is now Hired.\n\nPlease complete your new-hire requirements using this secure link:\nhttp://localhost/hr1_Merchflow/api/../newhire.php?t=92a4aa6017b228d9a7ee97b5de755fe51e88f456f383f1ff\n\nThis link will expire in 7 days.\n\nThank you,\nHR1 Nextgenmms – HR Department', 'new', 'Hired', 1, NULL, '2025-10-11 22:33:24'),
-(58, 9, '', NULL, '2025-10-11 22:35:20', 1, 0, 'Application Update – Update', 'Hi Danilo Vergara Jr,\n\nWe’d like to invite you to an interview for the Order Processor.\n\nWhen: (to be confirmed)\nMode: On-site\n\nPlease reply to confirm. Thank you!\n— HR1 MerchFlow', '', 'update', 1, NULL, '2025-10-11 22:35:20');
+(58, 9, '', NULL, '2025-10-11 22:35:20', 1, 0, 'Application Update – Update', 'Hi Danilo Vergara Jr,\n\nWe’d like to invite you to an interview for the Order Processor.\n\nWhen: (to be confirmed)\nMode: On-site\n\nPlease reply to confirm. Thank you!\n— HR1 MerchFlow', '', 'update', 1, NULL, '2025-10-11 22:35:20'),
+(59, 9, 'email', NULL, '2025-10-14 12:10:51', 0, 0, 'Interview Schedule Confirmation', 'Hi Applicant,\n\nThis is to confirm your interview schedule:\n\nDate/Time: 2025-10-14 20:11\nMode: On-site\n\nPlease reply to confirm your availability. Thank you.', 'screening', 'Screening', 1, NULL, '2025-10-14 12:10:51'),
+(60, 9, 'email', NULL, '2025-10-14 12:12:23', 0, 0, 'Interview Schedule Confirmation', 'Hi Applicant,\n\nThis is to confirm your interview schedule:\n\nDate/Time: 2025-10-22 20:12\nMode: Phone\nNotes: Lucas\n\nPlease reply to confirm your availability. Thank you.', 'screening', 'Screening', 1, NULL, '2025-10-14 12:12:23'),
+(61, 9, 'email', NULL, '2025-10-14 12:15:25', 0, 0, 'Interview Schedule Confirmation', 'Hi Applicant,\n\nThis is to confirm your interview schedule:\n\nDate/Time: 2025-10-14 20:15\nMode: Video\nNotes: Jayson\n\nPlease reply to confirm your availability. Thank you.', 'screening', 'Screening', 1, NULL, '2025-10-14 12:15:25'),
+(62, 9, '', NULL, '2025-10-14 12:16:06', 1, 0, 'Application Update – Update', 'Hi Danilo Vergara Jr,\n\nWe’d like to invite you to an interview for the Order Processor.\n\nWhen: 2025-10-14 20:15\nMode: Video\n\nPlease reply to confirm. Thank you!\n— HR1 MerchFlow', 'screening', 'update', 1, NULL, '2025-10-14 12:16:06'),
+(63, 39, '', NULL, '2025-10-14 13:45:52', 1, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi Lancelot Maliper,<br><br>\r\n           Congratulations! Your application status is now <b>Hired</b>.<br><br>\r\n           Please complete your new-hire requirements using this secure link:<br>\r\n           <a href=\"http://localhost/hr1_Merchflow/newhire.php?t=6d29cd91cfbff753daa637a409762e5d\">http://localhost/hr1_Merchflow/newhire.php?t=6d29cd91cfbff753daa637a409762e5d</a><br><br>\r\n           This link will expire in 7 days.<br><br>\r\n           Thank you,<br>HR1 Nextgenmms – HR Department', 'hired', 'onboarding', 1, '', '2025-10-14 13:45:52'),
+(64, 40, '', NULL, '2025-10-14 15:34:05', 1, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi Cassandra Lopez,<br><br>\r\n           Congratulations! Your application status is now <b>Hired</b>.<br><br>\r\n           Please complete your new-hire requirements using this secure link:<br>\r\n           <a href=\"http://localhost/hr1_Merchflow/newhire.php?t=697eeb0d408a45cb2c45aaf2a7d258fe\">http://localhost/hr1_Merchflow/newhire.php?t=697eeb0d408a45cb2c45aaf2a7d258fe</a><br><br>\r\n           This link will expire in 7 days.<br><br>\r\n           Thank you,<br>HR1 Nextgenmms – HR Department', 'hired', 'onboarding', 1, '', '2025-10-14 15:34:05'),
+(65, 39, 'email', NULL, '2025-10-14 15:39:39', 0, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi ,\n\nCongratulations! Your application status is now Hired.\n\nPlease complete your new-hire requirements using this secure link:\nhttp://localhost/hr1_Merchflow/api/../newhire.php?t=528da4383e5b9d62349c2f1a7260e6190867a232be825cf3\n\nThis link will expire in 7 days.\n\nThank you,\nHR1 Nextgenmms – HR Department', 'hired', 'Hired', 1, NULL, '2025-10-14 15:39:39'),
+(66, 41, '', NULL, '2025-10-14 17:32:33', 1, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi Klein De Jesus,<br><br>\r\n           Congratulations! Your application status is now <b>Hired</b>.<br><br>\r\n           Please complete your new-hire requirements using this secure link:<br>\r\n           <a href=\"http://localhost/hr1_Merchflow/newhire.php?t=32ed8b1ece4caa45e60dfb0a9afe8891\">http://localhost/hr1_Merchflow/newhire.php?t=32ed8b1ece4caa45e60dfb0a9afe8891</a><br><br>\r\n           This link will expire in 7 days.<br><br>\r\n           Thank you,<br>HR1 Nextgenmms – HR Department', 'hired', 'onboarding', 1, '', '2025-10-14 17:32:33'),
+(67, 19, '', NULL, '2025-10-17 15:00:26', 1, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi Jake Luigi,<br><br>\r\n           Congratulations! Your application status is now <b>Hired</b>.<br><br>\r\n           Please complete your new-hire requirements using this secure link:<br>\r\n           <a href=\"http://localhost/hr1_Merchflow/newhire.php?t=aaa554f867edf6bbcbbe34e8d1cf5a6f\">http://localhost/hr1_Merchflow/newhire.php?t=aaa554f867edf6bbcbbe34e8d1cf5a6f</a><br><br>\r\n           This link will expire in 7 days.<br><br>\r\n           Thank you,<br>HR1 Nextgenmms – HR Department', 'hired', 'onboarding', 1, '', '2025-10-17 15:00:26'),
+(68, 42, '', NULL, '2025-10-17 18:54:11', 1, 0, 'Welcome to HR1 Nextgenmms – Onboarding', 'Hi Kyle Kuzma,<br><br>\r\n           Congratulations! Your application status is now <b>Hired</b>.<br><br>\r\n           Please complete your new-hire requirements using this secure link:<br>\r\n           <a href=\"http://localhost/hr1_Merchflow/newhire.php?t=b05fc23680c715e0c1d3ee4229c2555d\">http://localhost/hr1_Merchflow/newhire.php?t=b05fc23680c715e0c1d3ee4229c2555d</a><br><br>\r\n           This link will expire in 7 days.<br><br>\r\n           Thank you,<br>HR1 Nextgenmms – HR Department', 'hired', 'onboarding', 1, '', '2025-10-17 18:54:11');
 
 -- --------------------------------------------------------
 
@@ -2131,7 +2360,11 @@ INSERT INTO `onboarding_plans` (`id`, `hire_name`, `role`, `site`, `start_date`,
 (48, 'Kyle Varga', 'Store Manager', 'Banawe', '2025-10-11', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-10 14:16:23', '2025-10-10 14:16:23'),
 (49, 'Robert Gonzales', 'Order Processor', 'Banawe', '2025-10-11', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-10 16:43:35', '2025-10-10 16:43:35'),
 (50, 'Juan De Jesus', 'Merchandiser / Promodiser', 'Banawe', '2025-10-10', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-10 20:51:03', '2025-10-10 20:51:03'),
-(52, 'Jake Miranda', 'Merchandiser / Promodiser', '', '2025-10-13', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-11 22:33:52', '2025-10-11 22:33:52');
+(52, 'Jake Miranda', 'Merchandiser / Promodiser', '', '2025-10-13', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-11 22:33:52', '2025-10-11 22:33:52'),
+(53, 'Cassandra Lopez', 'Inventory Clerk / Stockman', 'Banawe', '2025-10-14', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-14 09:34:01', '2025-10-14 15:34:01'),
+(54, 'Klein De Jesus', 'Inventory Clerk / Stockman', 'Banawe', '2025-10-14', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-14 11:32:30', '2025-10-14 17:32:30'),
+(55, 'Jake Luigi', 'Store Part Timer', 'Banawe', '2025-10-17', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-17 09:00:22', '2025-10-17 15:00:22'),
+(56, 'Kyle Kuzma', 'Inventory Clerk / Stockman', 'Banawe', '2025-10-17', NULL, NULL, NULL, 'Pending', 0, NULL, 0, NULL, NULL, '2025-10-17 12:54:07', '2025-10-17 18:54:07');
 
 -- --------------------------------------------------------
 
@@ -2166,30 +2399,24 @@ INSERT INTO `onboarding_tasks` (`id`, `plan_id`, `title`, `owner`, `due_date`, `
 (97, 44, 'POS & cash handling training', 'Employee', '2025-10-13', 'employee', 'Completed', NULL, NULL, 0),
 (98, 44, 'End-of-day balancing practice', 'Employee', '2025-10-14', 'employee', 'Completed', NULL, NULL, 0),
 (99, 44, 'Refund/void/exchange policy', 'Employee', '2025-10-15', 'employee', 'Completed', NULL, NULL, 0),
-(284, 47, 'Understand attendance & payroll cutoffs', 'Employee', '2025-10-06', 'employee', 'Pending', NULL, NULL, 0),
-(285, 47, '30-Day check-in', 'Employee', '2025-10-11', 'employee', 'Pending', NULL, NULL, 0),
-(286, 47, '90-Day probationary evaluation', 'Employee', '2026-01-10', 'employee', 'Pending', NULL, NULL, 0),
-(287, 47, 'Order picking/packing flow', 'Employee', '2025-10-13', 'employee', 'Pending', NULL, NULL, 0),
-(288, 47, 'Dispatch cutoff & SLA', 'Employee', '2025-10-30', 'employee', 'Pending', NULL, NULL, 0),
-(289, 47, 'Returns/exceptions handling', 'Employee', '2025-10-15', 'employee', 'Pending', NULL, NULL, 0),
 (444, 35, 'Understand attendance & payroll cutoffs', 'Employee', '2025-10-10', 'employee', 'Pending', NULL, NULL, 0),
 (445, 35, '30-Day check-in', 'Employee', '2025-10-11', 'employee', 'Pending', NULL, NULL, 0),
 (446, 35, '90-Day probationary evaluation', 'Employee', '2026-01-09', 'employee', 'Pending', NULL, NULL, 0),
 (447, 35, 'Warehouse safety orientation', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0),
 (448, 35, 'Receiving & stock transfer SOP', 'Employee', '2025-11-04', 'employee', 'Pending', NULL, NULL, 0),
 (449, 35, 'Cycle count procedure', 'Employee', '2025-10-14', 'employee', 'Pending', NULL, NULL, 0),
-(537, 52, 'Submit pre-employment requirements', 'Employee', '2025-10-10', 'employee', 'Pending', NULL, NULL, 0),
-(538, 52, 'Sign contract & NDA', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0),
-(539, 52, 'Attend HR orientation (policies & house rules)', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0),
-(540, 52, 'Enroll to biometric/timekeeping', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0),
-(541, 52, 'Safety & emergency briefing', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0),
-(542, 52, 'Store tour & meet the team', 'Employee', '2025-10-13', 'employee', 'Pending', NULL, NULL, 0),
-(543, 52, 'Understand attendance & payroll cutoffs', 'Employee', '2025-10-13', 'employee', 'Pending', NULL, NULL, 0),
-(544, 52, '30-Day check-in', 'Employee', '2025-11-11', 'employee', 'Pending', NULL, NULL, 0),
-(545, 52, '90-Day probationary evaluation', 'Employee', '2026-01-10', 'employee', 'Pending', NULL, NULL, 0),
-(546, 52, 'Planogram & display rules', 'Employee', '2025-10-13', 'employee', 'Pending', NULL, NULL, 0),
-(547, 52, 'FIFO/FEFO & shelf-life checks', 'Employee', '2025-10-14', 'employee', 'Pending', NULL, NULL, 0),
-(548, 52, 'Promo & price tag compliance', 'Employee', '2025-10-15', 'employee', 'Pending', NULL, NULL, 0);
+(549, 45, 'Submit pre-employment requirements', 'Employee', '2025-10-07', 'employee', 'Pending', NULL, NULL, 0),
+(550, 45, 'Sign contract & NDA', 'Employee', '2025-10-09', 'employee', 'Pending', NULL, NULL, 0),
+(551, 45, 'Attend HR orientation (policies & house rules)', 'Employee', '2025-10-09', 'employee', 'Pending', NULL, NULL, 0),
+(552, 45, 'Enroll to biometric/timekeeping', 'Employee', '2025-10-09', 'employee', 'Pending', NULL, NULL, 0),
+(553, 45, 'Safety & emergency briefing', 'Employee', '2025-10-09', 'employee', 'Pending', NULL, NULL, 0),
+(554, 45, 'Store tour & meet the team', 'Employee', '2025-10-10', 'employee', 'Pending', NULL, NULL, 0),
+(555, 45, 'Understand attendance & payroll cutoffs', 'Employee', '2025-10-10', 'employee', 'Pending', NULL, NULL, 0),
+(556, 45, '30-Day check-in', 'Employee', '2025-11-08', 'employee', 'Pending', NULL, NULL, 0),
+(557, 45, '90-Day probationary evaluation', 'Employee', '2026-01-07', 'employee', 'Pending', NULL, NULL, 0),
+(558, 45, 'Order picking/packing flow', 'Employee', '2025-10-10', 'employee', 'Pending', NULL, NULL, 0),
+(559, 45, 'Dispatch cutoff & SLA', 'Employee', '2025-10-11', 'employee', 'Pending', NULL, NULL, 0),
+(560, 45, 'Returns/exceptions handling', 'Employee', '2025-10-12', 'employee', 'Pending', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2369,8 +2596,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password_hash`, `role`, `is_active`
 (2, 'HR Manager', 'hr@osave.com', '4435a4e88e984616a91c109524caf662', 'manager', 1, '2025-09-20 17:55:18', NULL),
 (3, 'Employee One', 'emp1@osave.com', '0314ee502c6f4e284128ad14e84e37d5', 'employee', 1, '2025-09-20 17:55:18', NULL),
 (5, 'Admin', 'admin@osave.com', '$2y$10$jcy8oYiQYXuC0fqbBf.0yuD6i2JxHoRs.pZyVM2Ymd730/kHm1606', 'admin', 1, '2025-09-22 17:03:16', NULL),
-(12, 'Mark Loper', 'danilovergarajr610@gmail.com', '$2y$10$DsagyLEfUoyT97LtmnOFSOYigd5dbbSlPhi/tuerbHGkLXaa3q/J6', 'admin', 1, '2025-10-11 19:49:58', NULL),
-(13, 'Dan Vergara', 'danv66215@gmail.com', '$2y$10$RzhPkuMVGACAsfd/bxLghuZZ6AQsVcWkHg77I6DD8wygBHOqqbsau', 'employee', 1, '2025-10-11 22:29:27', NULL);
+(18, 'Dani Vergara', 'vergara.136541132229@depedqc.ph', '$2y$10$H73fCAumnJFBXibKino7wuxH48Bo.9J6CONZHBoFEZUmcaGsY1syK', 'admin', 1, '2025-10-17 17:04:04', NULL),
+(19, 'Dan Vergara', 'danv66215@gmail.com', '$2y$10$7Lc8y2W78TMJWCzKnj0g2u4zJN8bpC5rG/SomlN9pasFeXSPlGAmm', 'employee', 1, '2025-10-17 17:11:46', NULL),
+(20, 'Dans Vergara', 'danilovergarajr610@gmail.com', '$2y$10$Yyw3DnhW8PXqZ70PFHySLu.QBrtHW.ETlPa03PUnAbUB0Is9UBs8q', 'admin', 1, '2025-10-17 17:52:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -2571,25 +2799,25 @@ ALTER TABLE `user_otps`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `audit_logs`
 --
 ALTER TABLE `audit_logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1599;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1774;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `evaluations`
 --
 ALTER TABLE `evaluations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `evaluation_forms`
@@ -2601,13 +2829,13 @@ ALTER TABLE `evaluation_forms`
 -- AUTO_INCREMENT for table `eval_forms`
 --
 ALTER TABLE `eval_forms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `interviews`
 --
 ALTER TABLE `interviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `interview_batches`
@@ -2625,13 +2853,13 @@ ALTER TABLE `interview_schedules`
 -- AUTO_INCREMENT for table `newhire_uploads`
 --
 ALTER TABLE `newhire_uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `offers`
@@ -2643,13 +2871,13 @@ ALTER TABLE `offers`
 -- AUTO_INCREMENT for table `onboarding_plans`
 --
 ALTER TABLE `onboarding_plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `onboarding_tasks`
 --
 ALTER TABLE `onboarding_tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=549;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=610;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2691,7 +2919,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_otps`

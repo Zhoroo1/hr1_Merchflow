@@ -91,17 +91,23 @@ function __send_mail_core(
  * OTP sender (existing behavior)
  */
 function sendOTP(string $toEmail, string $otp): bool {
-    $USER = 'danv66215@gmail.com';  // Gmail account
-    $PASS = 'ogloqshjqaomkxvo';     // App Password (16 chars) — keep private
+    // Gmail/App Password ng sender (ito ang lalabas sa "From")
+    $USER = 'danv66215@gmail.com';  // sender account
+    $PASS = 'ogloqshjqaomkxvo';     // 16-char app password
 
     $sub  = 'Your HR1 Nextgenmms OTP';
     $html = "Your OTP code is: <b>{$otp}</b>. Valid for 5 minutes.";
     $alt  = "Your OTP code is: {$otp} (valid 5 minutes).";
 
+    // IMPORTANT: $toEmail ang tatanggap (walang pinapalitan)
     [$ok, $err] = __send_mail_core(
         $toEmail, $sub, $html, $alt,
         $USER, 'HR1 Nextgenmms', $USER, $PASS
     );
+
+    if (!$ok) {
+        error_log('[sendOTP] mail error: ' . ($err ?? 'unknown'));
+    }
     return $ok;
 }
 
